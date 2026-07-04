@@ -16,6 +16,7 @@ build.ninja
 .ninja_deps
 .ninja_log
 rules.ninja
+.cache/
 
 # Testing
 Testing/
