@@ -1,13 +1,36 @@
-add_subdirectory(bit_strings)
-add_subdirectory(coin_piles)
-add_subdirectory(gray_code_bit)
-add_subdirectory(increasing_array)
-add_subdirectory(missing_number)
-add_subdirectory(number_spiral)
-add_subdirectory(palindrome_reorder)
-add_subdirectory(permutations)
-add_subdirectory(repetitions)
-add_subdirectory(trailing_zeros)
-add_subdirectory(two_knights)
-add_subdirectory(two_sets)
-add_subdirectory(weird_algorithm)
+file(GLOB PROBLEM_DIRS CONFIGURE_DEPENDS *)
+
+foreach(PROBLEM_DIR ${PROBLEM_DIRS})
+    if(IS_DIRECTORY "${PROBLEM_DIR}")
+        get_filename_component(PROBLEM_NAME "${PROBLEM_DIR}" NAME)
+
+        add_executable(
+            ${PROBLEM_NAME}
+            "${PROBLEM_DIR}/main.cpp"
+        )
+
+        target_compile_features(
+            ${PROBLEM_NAME}
+            PRIVATE
+                cxx_std_23
+        )
+
+        target_compile_options(
+            ${PROBLEM_NAME}
+            PRIVATE
+                -Wall
+                -Wextra
+                -Wpedantic
+        )
+
+        add_test(
+            NAME cses.${PROBLEM_NAME}
+            COMMAND
+                ${CMAKE_COMMAND}
+                -DPROGRAM=$<TARGET_FILE:${PROBLEM_NAME}>
+                -DINPUT=${PROBLEM_DIR}/test_input.txt
+                -DEXPECTED=${PROBLEM_DIR}/test_output.txt
+                -P ${PROJECT_SOURCE_DIR}/cmake/run_test.cmake
+        )
+    endif()
+endforeach()
