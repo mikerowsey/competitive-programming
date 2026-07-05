@@ -23,4 +23,10 @@ if(CMAKE_EXPORT_COMPILE_COMMANDS)
     )
 endif()
 
+include(CTest)
+
+if(BUILD_TESTING)
+    add_subdirectory(tests)
+endif()
+
 add_subdirectory(src)
