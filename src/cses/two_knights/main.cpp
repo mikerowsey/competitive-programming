@@ -12,20 +12,19 @@
 //   each other. The resulting expression simplifies to the closed-
 //   form formula implemented below.
 
+#include <cstdint>
 #include <iostream>
-
-#include "core/types.hpp"
 
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 max_board_size{};
+    uint64_t max_board_size{};
     in >> max_board_size;
 
     out << 0 << '\n';
 
-    for (u64 board_size{2}; board_size <= max_board_size; ++board_size) {
-        const u64 total_pairs = board_size * board_size * (board_size * board_size - 1) / 2;
-        const u64 attacking_pairs = 4 * (board_size - 1) * (board_size - 2);
+    for (uint64_t board_size{2}; board_size <= max_board_size; ++board_size) {
+        const uint64_t total_pairs = board_size * board_size * (board_size * board_size - 1) / 2;
+        const uint64_t attacking_pairs = 4 * (board_size - 1) * (board_size - 2);
         out << total_pairs - attacking_pairs << '\n';
     }
 }

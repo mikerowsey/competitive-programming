@@ -12,19 +12,17 @@
 //   divisible by three, since each move removes exactly three coins.
 //   Both conditions are necessary and sufficient.
 
+#include <cstdint>
 #include <iostream>
-
-#include "core/types.hpp"
-
 
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 test_cases{};
+    uint64_t test_cases{};
     in >> test_cases;
 
-    for (u64 test{0}; test < test_cases; ++test) {
-        u64 first_pile{};
-        u64 second_pile{};
+    for (uint64_t test{0}; test < test_cases; ++test) {
+        uint64_t first_pile{};
+        uint64_t second_pile{};
         in >> first_pile >> second_pile;
 
         if (    first_pile > 2 * second_pile ||

@@ -12,25 +12,24 @@
 //   layer * (layer - 1) + 1. The answer is an offset from the
 //   center determined by the parity of the layer.
 
+#include <cstdint>
 #include <algorithm>
 #include <iostream>
 
-#include "core/types.hpp"
-
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 test_cases{};
+    std::uint64_t test_cases{};
     in >> test_cases;
 
-    for (u64 i{0}; i < test_cases; ++i) {
-        i64 row{};
-        i64 column{};
+    for (uint64_t i{0}; i < test_cases; ++i) {
+        int64_t row{};
+        int64_t column{};
         in >> row >> column;
 
-        const i64 layer = std::max(row, column);
-        const i64 layer_center = layer * (layer - 1) + 1;
+        const int64_t layer = std::max(row, column);
+        const int64_t layer_center = layer * (layer - 1) + 1;
 
-        const i64 offset =
+        const int64_t offset =
             (layer & 1)
                 ? column - row
                 : row - column;

@@ -11,13 +11,13 @@
 //   listed first, followed by all odd numbers. The only exceptions are
 //   n = 2 and n = 3, where no valid permutation exists.
 
+#include <cstdint>
 #include <iostream>
 
-#include "core/types.hpp"
 
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 n{};
+    uint64_t n{};
     in >> n;
 
     if (n == 1) {
@@ -30,11 +30,11 @@ void solve(std::istream& in, std::ostream& out)
         return;
     }
 
-    for (u64 value{2}; value <= n; value += 2) {
+    for (uint64_t value{2}; value <= n; value += 2) {
         out << value << ' ';
     }
 
-    for (u64 value{1}; value <= n; value += 2) {
+    for (uint64_t value{1}; value <= n; value += 2) {
         out << value << ' ';
     }
 

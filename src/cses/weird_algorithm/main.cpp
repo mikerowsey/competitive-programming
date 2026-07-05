@@ -11,15 +11,12 @@
 //  Each iteration updates the current value in place, so only
 //  constant extra memory is required.
 
+#include <cstdint>
 #include <iostream>
-
-#include "core/types.hpp"
-
-using namespace std;
 
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 n;
+    uint64_t n;
     in >> n;
     while (true) {
         out << n;

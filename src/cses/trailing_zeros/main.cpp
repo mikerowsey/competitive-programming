@@ -11,16 +11,15 @@
 //   Since there are always more factors of 2 than 5 in n!, count the
 //   number of factors of 5 by repeatedly dividing n by powers of 5.
 
+#include <cstdint>
 #include <iostream>
-
-#include "core/types.hpp"
 
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 n{};
+    uint64_t n{};
     in >> n;
 
-    u64 trailing_zeros{};
+    uint64_t trailing_zeros{};
 
     while (n != 0) {
         n /= 5;

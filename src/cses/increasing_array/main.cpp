@@ -8,22 +8,21 @@
 //          value (the previous element). When a value is too small, add the
 //          required increment; otherwise, update the running maximum.
 
+#include <cstdint>
 #include <iostream>
-
-#include "core/types.hpp"
 
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 count{};
+    uint64_t count{};
     in >> count;
 
-    u64 previous{};
+    uint64_t previous{};
     in >> previous;
 
-    u64 moves{};
+    uint64_t moves{};
 
-    for (u64 i{1}; i < count; ++i) {
-        u64 current{};
+    for (uint64_t i{1}; i < count; ++i) {
+        uint64_t current{};
         in >> current;
 
         if (current < previous) {

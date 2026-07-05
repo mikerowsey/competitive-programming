@@ -10,9 +10,10 @@
 //          formula, subtract the actual sum, and the difference is the
 //          missing number.
 
+#include <cstdint>
 #include <iostream>
 
-#include "core/types.hpp"
+using u64 = uint64_t;
 
 void solve(std::istream& in, std::ostream& out)
 {

@@ -8,19 +8,19 @@
 //          characters. Reset the count when the character changes and
 //          track the maximum run length seen.
 
+#include <cstdint>
 #include <algorithm>
 #include <iostream>
 #include <string>
 
-#include "core/types.hpp"
 
 void solve(std::istream& in, std::ostream& out)
 {
     std::string s;
     in >> s;
 
-    u32 longest{1};
-    u32 current{1};
+    uint32_t longest{1};
+    uint32_t current{1};
 
     for (std::size_t i{1}; i < s.size(); ++i) {
         current = (s[i] == s[i - 1] ? current + 1: 1);

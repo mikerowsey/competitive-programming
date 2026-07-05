@@ -3,19 +3,22 @@ get_filename_component(
     ${CMAKE_CURRENT_SOURCE_DIR}
     NAME
 )
+
 add_executable(
     ${PROBLEM_NAME}
     main.cpp
 )
 
-target_include_directories(
-    ${PROBLEM_NAME}    
-    PRIVATE
-        ${PROJECT_SOURCE_DIR}/include
-)
-
-target_link_libraries(
+target_compile_features(
     ${PROBLEM_NAME}
     PRIVATE
-        project_options
+        cxx_std_23
+)
+
+target_compile_options(
+    ${PROBLEM_NAME}
+    PRIVATE
+        -Wall
+        -Wextra
+        -Wpedantic
 )
