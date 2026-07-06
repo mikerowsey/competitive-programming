@@ -7,34 +7,49 @@
 3. Clean, descriptive, maintainable code.
 4. Fast execution details (constant factors, I/O, memory locality).
 
-## Practical rules
+## Practical Rules
 
 - Solve for asymptotic complexity before micro-optimizations.
-- Use descriptive names for data structures and state (`current_sum`, `max_prefix`, `adjacency_list`).
+- Use descriptive names for data structures and state.
 - Keep functions small and single-purpose when it improves readability.
-- Prefer standard library containers and algorithms over custom low-level code unless profiling or constraints justify otherwise.
-- Use `const` aggressively for inputs and non-mutating locals.
-- Avoid clever one-liners when they reduce clarity.
-- Keep I/O setup explicit and fast:
-  - `ios::sync_with_stdio(false);`
-  - `cin.tie(nullptr);`
-- Use integer widths intentionally (`int`, `long long`) based on constraints.
+- Prefer standard library tools over custom low-level code unless constraints justify otherwise.
+- Use integer widths intentionally.
+- Avoid clever one-liners when they hurt readability.
 - Keep memory usage predictable and proportional to constraints.
 
-## CSES solution checklist
+## CSES-Specific Conventions
 
-- [ ] Time complexity is optimal or near-optimal for known CSES constraints.
-- [ ] Space complexity is justified and acceptable.
-- [ ] Edge cases are handled (empty/smallest/largest/input extremes).
+- Assume judge input is valid; do not add defensive input guards unless explicitly requested.
+- Prefer straightforward, portable constructs over fragile feature usage.
+- Avoid unnecessary abstraction in short single-file solutions.
+- Prefer problem-name-first communication and references.
+
+## Header Template for `main.cpp`
+
+Use this exact section order:
+
+1. `// Problem: ...`
+2. blank line (`//`)
+3. `// Pattern: ...`
+4. `// Technique: ...`
+5. blank line (`//`)
+6. `// Time: ...`
+7. `// Space: ...`
+8. blank line (`//`)
+9. `// Insight:`
+
+## Solution Checklist
+
+- [ ] Time complexity is optimal or near-optimal for constraints.
+- [ ] Space complexity is justified.
+- [ ] Edge cases are covered.
 - [ ] Names are descriptive and code reads top-down.
-- [ ] No unnecessary abstractions for short competitive solutions.
-- [ ] Passes local input/output tests.
+- [ ] No unnecessary abstractions.
+- [ ] Passes local fixture-based tests.
 
-## Review rubric for this repo
+## Review Order
 
-When reviewing or modifying a solution in this repository:
-
-1. Confirm algorithmic optimality first.
-2. Improve correctness and edge-case handling second.
-3. Refactor toward idiomatic C++ and readability third.
-4. Apply micro-optimizations last, only when measurable or clearly beneficial.
+1. Confirm algorithmic optimality.
+2. Confirm correctness and edge-case behavior.
+3. Improve readability and maintainability.
+4. Apply micro-optimizations only when useful.
