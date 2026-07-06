@@ -2,11 +2,14 @@
 //
 // Pattern: Linear Scan
 // Technique: Run-length counting
+//
 // Time: O(n)
 // Space: O(1)
-// Insight: Traverse the string once, counting consecutive identical
-//          characters. Reset the count when the character changes and
-//          track the maximum run length seen.
+//
+// Insight:
+//   Traverse the string once, counting consecutive identical characters.
+//   Reset the count when the character changes and track the maximum run
+//   length seen.
 
 #include <cstdint>
 #include <algorithm>
@@ -19,11 +22,16 @@ void solve(std::istream& in, std::ostream& out)
     std::string s;
     in >> s;
 
-    uint32_t longest{1};
-    uint32_t current{1};
+    if (s.empty()) {
+        out << 0 << '\n';
+        return;
+    }
+
+    std::uint32_t longest{1};
+    std::uint32_t current{1};
 
     for (std::size_t i{1}; i < s.size(); ++i) {
-        current = (s[i] == s[i - 1] ? current + 1: 1);
+        current = (s[i] == s[i - 1] ? current + 1 : 1);
         longest = std::max(longest, current);
     }
 

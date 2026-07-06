@@ -7,26 +7,32 @@
 // Space: O(1)
 //
 // Insight:
-//  Repeatedly apply the Collatz rules until reaching 1.
-//  Each iteration updates the current value in place, so only
-//  constant extra memory is required.
+//   Repeatedly apply the Collatz rules until reaching 1. Each iteration
+//   updates the current value in place, so only constant extra memory is
+//   required.
 
 #include <cstdint>
 #include <iostream>
 
 void solve(std::istream& in, std::ostream& out)
 {
-    uint64_t n;
+    std::uint64_t n{};
     in >> n;
+
     while (true) {
         out << n;
-        if (n == 1) break;
+        if (n == 1) {
+            break;
+        }
+
         out << ' ';
-        if ((n & 1) == 0)
+        if ((n & 1ULL) == 0ULL) {
             n /= 2;
-        else
+        } else {
             n = n * 3 + 1;
+        }
     }
+
     out << '\n';
 }
 

@@ -1,28 +1,28 @@
 // Problem: Coin Piles
 //
-// Pattern:   Mathematical Observation
+// Pattern: Mathematical Observation
 // Technique: Necessary and Sufficient Conditions
 //
-// Time:      O(t)
-// Space:     O(1)
+// Time: O(t)
+// Space: O(1)
 //
 // Insight:
 //   The larger pile can never contain more than twice as many coins as
 //   the smaller pile. Additionally, the total number of coins must be
-//   divisible by three, since each move removes exactly three coins.
-//   Both conditions are necessary and sufficient.
+//   divisible by three, since each move removes exactly three coins. Both
+//   conditions are necessary and sufficient.
 
 #include <cstdint>
 #include <iostream>
 
 void solve(std::istream& in, std::ostream& out)
 {
-    uint64_t test_cases{};
+    std::uint64_t test_cases{};
     in >> test_cases;
 
-    for (uint64_t test{0}; test < test_cases; ++test) {
-        uint64_t first_pile{};
-        uint64_t second_pile{};
+    for (std::uint64_t test{0}; test < test_cases; ++test) {
+        std::uint64_t first_pile{};
+        std::uint64_t second_pile{};
         in >> first_pile >> second_pile;
 
         if (    first_pile > 2 * second_pile ||

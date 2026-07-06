@@ -2,22 +2,22 @@
 //
 // Pattern: Modular Arithmetic
 // Technique: Binary Exponentiation (Modular Exponentiation)
+//
 // Time: O(log n)
 // Space: O(1)
-// Insight: Compute 2^n modulo 1,000,000,007 using exponentiation by
-//          squaring. Repeatedly square the base and multiply it into
-//          the result whenever the current bit of the exponent is set,
-//          reducing modulo MOD after each multiplication to keep the
-//          intermediate values bounded.
+//
+// Insight:
+//   Compute 2^n modulo 1,000,000,007 using exponentiation by squaring.
+//   Repeatedly square the base and multiply it into the result whenever the
+//   current bit of the exponent is set, reducing modulo MOD after each
+//   multiplication to keep the intermediate values bounded.
 
 #include <cstdint>
 #include <iostream>
 
-namespace {
-
-constexpr uint64_t mod_pow(uint64_t base, uint64_t exp, uint64_t mod)
+constexpr std::uint64_t mod_pow(std::uint64_t base, std::uint64_t exp, std::uint64_t mod)
 {
-    uint64_t result{1};
+    std::uint64_t result{1};
 
     while (exp > 0) {
         if (exp & 1) {
@@ -31,14 +31,14 @@ constexpr uint64_t mod_pow(uint64_t base, uint64_t exp, uint64_t mod)
     return result;
 }
 
-constexpr uint64_t MOD{1'000'000'007};
-}  // namespace
+static constexpr std::uint64_t kMod{1'000'000'007};
 
 void solve(std::istream& in, std::ostream& out)
 {
-    uint64_t n;
+    std::uint64_t n{};
     in >> n;
-    out << mod_pow(2, n, MOD) << '\n';
+
+    out << mod_pow(2, n, kMod) << '\n';
 }
 
 int main()

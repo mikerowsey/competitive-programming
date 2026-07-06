@@ -2,14 +2,16 @@
 //
 // Pattern: Depth-First Search
 // Technique: Branch and Bound
+//
 // Time: O(2^n)
 // Space: O(n)
 //
-// Insight: Sort the weights in descending order and assign each apple
-//          to one of two groups using DFS. At each step, compare the
-//          current weight difference with the total remaining weight.
-//          If the remaining apples cannot improve the current best
-//          possible difference, prune the branch immediately.
+// Insight:
+//   Sort the weights in descending order and assign each apple to one of
+//   two groups using DFS. At each step, compare the current weight
+//   difference with the total remaining weight. If the remaining apples
+//   cannot improve the current best possible difference, prune the branch
+//   immediately.
 
 #include <algorithm>
 #include <cstdint>
@@ -17,17 +19,19 @@
 #include <iostream>
 #include <vector>
 
-using i64 = std::int64_t;
-
-void dfs(const std::vector<i64>& weights, const std::vector<i64>& remaining_weight,
-         std::size_t index, i64 left_weight, i64 right_weight, i64& best_difference)
+void dfs(const std::vector<std::int64_t>& weights,
+         const std::vector<std::int64_t>& remaining_weight,
+         std::size_t index,
+         std::int64_t left_weight,
+         std::int64_t right_weight,
+         std::int64_t& best_difference)
 {
     if (index == weights.size()) {
         best_difference = std::min(best_difference, std::abs(left_weight - right_weight));
         return;
     }
 
-    const i64 difference = std::abs(left_weight - right_weight);
+    const std::int64_t difference = std::abs(left_weight - right_weight);
 
     if (difference >= remaining_weight[index]) {
         best_difference = std::min(best_difference, difference - remaining_weight[index]);
@@ -43,15 +47,15 @@ void dfs(const std::vector<i64>& weights, const std::vector<i64>& remaining_weig
 
 void solve(std::istream& in, std::ostream& out)
 {
-    i64 apple_count{};
+    std::int64_t apple_count{};
     in >> apple_count;
 
-    std::vector<i64> weights;
+    std::vector<std::int64_t> weights;
     weights.reserve(apple_count);
 
-    i64 total_weight{};
-    for (i64 i{}; i < apple_count; ++i) {
-        i64 weight{};
+    std::int64_t total_weight{};
+    for (std::int64_t i{}; i < apple_count; ++i) {
+        std::int64_t weight{};
         in >> weight;
         total_weight += weight;
         weights.push_back(weight);
@@ -59,15 +63,15 @@ void solve(std::istream& in, std::ostream& out)
 
     std::sort(weights.begin(), weights.end(), std::greater<>{});
 
-    std::vector<i64> remaining_weight(weights.size());
+    std::vector<std::int64_t> remaining_weight(weights.size());
 
-    i64 remaining{total_weight};
+    std::int64_t remaining{total_weight};
     for (std::size_t i{}; i < weights.size(); ++i) {
         remaining_weight[i] = remaining;
         remaining -= weights[i];
     }
 
-    i64 best_difference{total_weight};
+    std::int64_t best_difference{total_weight};
 
     dfs(weights, remaining_weight, 1, weights.front(), 0, best_difference);
 

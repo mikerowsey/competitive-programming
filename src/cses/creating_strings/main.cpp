@@ -3,8 +3,8 @@
 // Pattern: Enumeration
 // Technique: Lexicographic permutation generation
 //
-// Time:      O(n! · n)
-// Space:     O(n)
+// Time: O(n! · n)
+// Space: O(n)
 //
 // Insight:
 //   Sort the characters first, then repeatedly call std::next_permutation().
@@ -13,9 +13,34 @@
 //   characters are present.
 
 #include <algorithm>
+#include <array>
+#include <cstdint>
 #include <iostream>
 #include <string>
-#include <vector>
+
+std::uint64_t factorial(std::uint64_t value)
+{
+    std::uint64_t result{1};
+    for (std::uint64_t current{2}; current <= value; ++current) {
+        result *= current;
+    }
+    return result;
+}
+
+std::uint64_t count_unique_permutations(const std::string& letters)
+{
+    std::array<std::uint64_t, 26> frequency{};
+    for (const char ch : letters) {
+        ++frequency[ch - 'a'];
+    }
+
+    std::uint64_t count = factorial(letters.size());
+    for (const std::uint64_t repeats : frequency) {
+        count /= factorial(repeats);
+    }
+
+    return count;
+}
 
 void solve(std::istream& in, std::ostream& out)
 {
@@ -24,17 +49,11 @@ void solve(std::istream& in, std::ostream& out)
 
     std::sort(letters.begin(), letters.end());
 
-    std::vector<std::string> permutations;
+    out << count_unique_permutations(letters) << '\n';
 
     do {
-        permutations.push_back(letters);
+        out << letters << '\n';
     } while (std::next_permutation(letters.begin(), letters.end()));
-
-    out << permutations.size() << '\n';
-
-    for (const auto& permutation : permutations) {
-        out << permutation << '\n';
-    }
 }
 
 int main()

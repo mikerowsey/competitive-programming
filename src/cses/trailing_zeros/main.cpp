@@ -1,25 +1,25 @@
 // Problem: Trailing Zeros
 //
-// Pattern:   Mathematical Observation
+// Pattern: Mathematical Observation
 // Technique: Repeated Division
 //
-// Time:      O(log₅ n)
-// Space:     O(1)
+// Time: O(log₅ n)
+// Space: O(1)
 //
 // Insight:
-//   Each trailing zero is produced by a factor of 10 = 2 × 5.
-//   Since there are always more factors of 2 than 5 in n!, count the
-//   number of factors of 5 by repeatedly dividing n by powers of 5.
+//   Each trailing zero is produced by a factor of 10 = 2 × 5. Since there
+//   are always more factors of 2 than 5 in n!, count the number of factors
+//   of 5 by repeatedly dividing n by powers of 5.
 
 #include <cstdint>
 #include <iostream>
 
 void solve(std::istream& in, std::ostream& out)
 {
-    uint64_t n{};
+    std::uint64_t n{};
     in >> n;
 
-    uint64_t trailing_zeros{};
+    std::uint64_t trailing_zeros{};
 
     while (n != 0) {
         n /= 5;

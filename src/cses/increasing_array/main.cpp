@@ -2,27 +2,35 @@
 //
 // Pattern: Linear Scan
 // Technique: Running maximum
+//
 // Time: O(n)
 // Space: O(1)
-// Insight: Traverse the array once, keeping track of the minimum allowed
-//          value (the previous element). When a value is too small, add the
-//          required increment; otherwise, update the running maximum.
+//
+// Insight:
+//   Traverse the array once, keeping track of the minimum allowed value
+//   (the previous element). When a value is too small, add the required
+//   increment; otherwise, update the running maximum.
 
 #include <cstdint>
 #include <iostream>
 
 void solve(std::istream& in, std::ostream& out)
 {
-    uint64_t count{};
+    std::uint64_t count{};
     in >> count;
 
-    uint64_t previous{};
+    if (count == 0) {
+        out << 0 << '\n';
+        return;
+    }
+
+    std::uint64_t previous{};
     in >> previous;
 
-    uint64_t moves{};
+    std::uint64_t moves{};
 
-    for (uint64_t i{1}; i < count; ++i) {
-        uint64_t current{};
+    for (std::uint64_t i{1}; i < count; ++i) {
+        std::uint64_t current{};
         in >> current;
 
         if (current < previous) {

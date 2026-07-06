@@ -1,43 +1,47 @@
 // Problem: Tower of Hanoi
 //
-// Pattern:   Recursion
+// Pattern: Recursion
 // Technique: Divide and Conquer
 //
-// Time:      O(2^n)
-// Space:     O(n)
+// Time: O(2^n)
+// Space: O(n)
 //
 // Insight:
-//   To move n disks from source to destination, first move n - 1 disks
-//   to the auxiliary peg, move the largest disk to the destination,
-//   then move the n - 1 disks from the auxiliary peg to the destination.
- 
+//   To move n disks from source to destination, first move n - 1 disks to
+//   the auxiliary peg, move the largest disk to the destination, then move
+//   the n - 1 disks from the auxiliary peg to the destination.
+
 #include <cstdint>
 #include <iostream>
- 
-using u64 = std::uint64_t;
- 
-void hanoi(u64 disks, u64 src, u64 aux, u64 dest, std::ostream& out)
+
+void hanoi(std::uint64_t disks,
+           std::uint64_t src,
+           std::uint64_t aux,
+           std::uint64_t dest,
+           std::ostream& out)
 {
     if (disks == 1) {
         out << src << ' ' << dest << '\n';
         return;
     }
- 
+
     hanoi(disks - 1, src, dest, aux, out);
     out << src << ' ' << dest << '\n';
     hanoi(disks - 1, aux, src, dest, out);
 }
- 
+
 void solve(std::istream& in, std::ostream& out)
 {
-    u64 disks{};
+    std::uint64_t disks{};
     in >> disks;
- 
-    out << ((1ULL << disks) - 1) << '\n';
- 
+
+    const std::uint64_t move_count = (std::uint64_t{1} << disks) - 1;
+
+    out << move_count << '\n';
+
     hanoi(disks, 1, 2, 3, out);
 }
- 
+
 int main()
 {
     std::ios::sync_with_stdio(false);

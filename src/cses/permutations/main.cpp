@@ -1,15 +1,15 @@
 // Problem: Permutations
 //
-// Pattern:   Constructive Algorithm
+// Pattern: Constructive Algorithm
 // Technique: Even-Odd Ordering
 //
-// Time:      O(n)
-// Space:     O(1)
+// Time: O(n)
+// Space: O(1)
 //
 // Insight:
-//   Adjacent numbers differ by at least two when all even numbers are
-//   listed first, followed by all odd numbers. The only exceptions are
-//   n = 2 and n = 3, where no valid permutation exists.
+//   Adjacent numbers differ by at least two when all even numbers are listed
+//   first, followed by all odd numbers. The only exceptions are n = 2 and
+//   n = 3, where no valid permutation exists.
 
 #include <cstdint>
 #include <iostream>
@@ -17,7 +17,7 @@
 
 void solve(std::istream& in, std::ostream& out)
 {
-    uint64_t n{};
+    std::uint64_t n{};
     in >> n;
 
     if (n == 1) {
@@ -30,12 +30,21 @@ void solve(std::istream& in, std::ostream& out)
         return;
     }
 
-    for (uint64_t value{2}; value <= n; value += 2) {
-        out << value << ' ';
+    bool first_value = true;
+    for (std::uint64_t value{2}; value <= n; value += 2) {
+        if (!first_value) {
+            out << ' ';
+        }
+        out << value;
+        first_value = false;
     }
 
-    for (uint64_t value{1}; value <= n; value += 2) {
-        out << value << ' ';
+    for (std::uint64_t value{1}; value <= n; value += 2) {
+        if (!first_value) {
+            out << ' ';
+        }
+        out << value;
+        first_value = false;
     }
 
     out << '\n';

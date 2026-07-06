@@ -1,29 +1,25 @@
 // Problem: Palindrome Reorder
 //
-// Pattern:   Counting
+// Pattern: Counting
 // Technique: Frequency Analysis
 //
-// Time:      O(n)
-// Space:     O(1)
+// Time: O(n)
+// Space: O(1)
 //
 // Insight:
-//   Count the occurrences of each character. A palindrome can contain
-//   at most one character with an odd frequency. Print half of each
-//   character in ascending order, the odd-frequency character (if any),
-//   then the remaining halves in reverse order.
+//   Count the occurrences of each character. A palindrome can contain at
+//   most one character with an odd frequency. Print half of each character
+//   in ascending order, the odd-frequency character (if any), then the
+//   remaining halves in reverse order.
 
+#include <array>
 #include <cstdint>
 #include <iostream>
-#include <ranges>
-#include <string_view>
-
-namespace {
-constexpr std::string_view alphabet{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
-}
+#include <string>
 
 void solve(std::istream& in, std::ostream& out)
 {
-    std::array<uint64_t, 26> count{};
+    std::array<std::uint64_t, 26> count{};
     std::string input;
     in >> input;
 
@@ -31,13 +27,13 @@ void solve(std::istream& in, std::ostream& out)
         ++count[ch - 'A'];
     }
 
-    uint64_t odds{0};
+    std::uint64_t odds{0};
     char center{};
 
-    for (char ch : alphabet) {
-        if (count[ch - 'A'] & 1) {
+    for (int index{0}; index < 26; ++index) {
+        if (count[index] & 1) {
             ++odds;
-            center = ch;
+            center = static_cast<char>('A' + index);
         }
     }
 
@@ -46,16 +42,16 @@ void solve(std::istream& in, std::ostream& out)
         return;
     }
 
-    for (char ch : alphabet) {
-        out << std::string(count[ch - 'A'] / 2, ch);
+    for (int index{0}; index < 26; ++index) {
+        out << std::string(count[index] / 2, static_cast<char>('A' + index));
     }
 
     if (odds) {
         out << center;
     }
 
-    for (char ch : std::views::reverse(alphabet)) {
-        out << std::string(count[ch - 'A'] / 2, ch);
+    for (int index{25}; index >= 0; --index) {
+        out << std::string(count[index] / 2, static_cast<char>('A' + index));
     }
 
     out << '\n';

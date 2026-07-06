@@ -1,10 +1,10 @@
 // Problem: Two Sets
 //
-// Pattern:   Greedy
+// Pattern: Greedy
 // Technique: Largest-First Partition
 //
-// Time:      O(n)
-// Space:     O(n)
+// Time: O(n)
+// Space: O(n)
 //
 // Insight:
 //   If the total sum is odd, no partition exists. Otherwise, repeatedly
@@ -18,12 +18,15 @@
 namespace
 {
 
-void print_set(std::ostream& out, const std::vector<uint64_t>& values)
+void print_set(std::ostream& out, const std::vector<std::uint64_t>& values)
 {
     out << values.size() << '\n';
 
-    for (uint64_t value : values) {
-        out << value << ' ';
+    for (std::size_t index = 0; index < values.size(); ++index) {
+        if (index > 0) {
+            out << ' ';
+        }
+        out << values[index];
     }
 
     out << '\n';
@@ -33,13 +36,13 @@ void print_set(std::ostream& out, const std::vector<uint64_t>& values)
 
 void solve(std::istream& in, std::ostream& out)
 {
-    uint64_t n{};
+    std::uint64_t n{};
     in >> n;
 
-    std::vector<uint64_t> first_set;
-    std::vector<uint64_t> second_set;
+    std::vector<std::uint64_t> first_set;
+    std::vector<std::uint64_t> second_set;
 
-    uint64_t remaining_sum = n * (n + 1) / 2;
+    std::uint64_t remaining_sum = n * (n + 1) / 2;
 
     if (remaining_sum & 1) {
         out << "NO\n";
@@ -50,7 +53,7 @@ void solve(std::istream& in, std::ostream& out)
 
     remaining_sum /= 2;
 
-    for (uint64_t value{n}; value > 0; --value) {
+    for (std::uint64_t value{n}; value > 0; --value) {
         if (value <= remaining_sum) {
             first_set.push_back(value);
             remaining_sum -= value;
