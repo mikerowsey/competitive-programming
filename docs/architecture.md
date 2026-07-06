@@ -106,9 +106,9 @@ Solution headers follow this order:
 
 ## Near-Term Improvements
 
-- Replace glob-based problem discovery with an explicit registry/manifest.
-- Add CI to run configure, build, and tests on push/PR.
-- Add optional sanitizer preset(s) for infrastructure hardening.
+- Keep CSES problem index in docs synchronized with solved set and milestones.
+- Add optional benchmark harness for selected heavier tasks.
+- Add optional sanitizer preset expansion and tuning for macOS/Linux parity.
 
 ## Long-Term Goal
 

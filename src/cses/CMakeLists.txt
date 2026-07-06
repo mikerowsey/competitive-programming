@@ -6,14 +6,20 @@ set(CSES_PROBLEMS
     chessboard_and_queens
     coin_piles
     creating_strings
+    digit_queries
     gray_code_bit
+    grid_coloring_i
+    grid_path_description
     increasing_array
+    knight_moves_grid
+    mex_grid_construction
     missing_number
     number_spiral
     palindrome_reorder
     permutations
     raab_game_i
     repetitions
+    string_reorder
     tower_of_hanoi
     trailing_zeros
     two_knights

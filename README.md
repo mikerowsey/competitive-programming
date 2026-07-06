@@ -22,6 +22,11 @@ The objective is to produce solutions and infrastructure that hold up under a pr
   - exact-output validation
   - semantic validation for multi-answer problems
 
+## Milestone Status
+
+- CSES Introductory Problems: complete
+- Local verification status: 24/24 tests passing
+
 ## Quick Start
 
 1. Configure:
