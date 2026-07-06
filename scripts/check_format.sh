@@ -23,7 +23,11 @@ collect_files() {
   fi
 
   if [[ -n "${GITHUB_EVENT_NAME:-}" && "${GITHUB_EVENT_NAME}" == "push" ]]; then
-    git diff --name-only HEAD~1..HEAD -- '*.cpp' '*.cc' '*.cxx' '*.hpp' '*.hh' '*.hxx'
+    if git rev-parse HEAD~1 >/dev/null 2>&1; then
+      git diff --name-only HEAD~1..HEAD -- '*.cpp' '*.cc' '*.cxx' '*.hpp' '*.hh' '*.hxx'
+    else
+      git ls-files '*.cpp' '*.cc' '*.cxx' '*.hpp' '*.hh' '*.hxx'
+    fi
     return
   fi
 
