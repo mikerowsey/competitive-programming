@@ -15,9 +15,6 @@
 #include <iostream>
 #include <vector>
 
-namespace
-{
-
 void print_set(std::ostream& out, const std::vector<std::uint64_t>& values)
 {
     out << values.size() << '\n';
@@ -31,8 +28,6 @@ void print_set(std::ostream& out, const std::vector<std::uint64_t>& values)
 
     out << '\n';
 }
-
-} // namespace
 
 void solve(std::istream& in, std::ostream& out)
 {

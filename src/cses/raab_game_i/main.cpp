@@ -18,9 +18,6 @@
 #include <iostream>
 #include <vector>
 
-namespace
-{
-
 void append_block(std::vector<std::uint64_t>& permutation, std::uint64_t start, std::uint64_t size,
                   bool first_player_heavy)
 {
@@ -41,8 +38,6 @@ void append_block(std::vector<std::uint64_t>& permutation, std::uint64_t start, 
         permutation.push_back(start);
     }
 }
-
-} // namespace
 
 void solve(std::istream& in, std::ostream& out)
 {

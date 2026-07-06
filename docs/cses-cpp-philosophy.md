@@ -23,6 +23,7 @@
 - Prefer straightforward, portable constructs over fragile feature usage.
 - Avoid unnecessary abstraction in short single-file solutions.
 - Prefer problem-name-first communication and references.
+- Keep code clang-format clean to pass the style gate.
 
 ## Header Template for `main.cpp`
 
@@ -46,6 +47,7 @@ Use this exact section order:
 - [ ] Names are descriptive and code reads top-down.
 - [ ] No unnecessary abstractions.
 - [ ] Passes local fixture-based tests.
+- [ ] Passes optional perf smoke budget when enabled.
 
 ## Review Order
 

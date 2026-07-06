@@ -38,7 +38,7 @@ Each problem directory is an independent executable target.
 ### Build
 
 - Root CMake config sets global compiler defaults.
-- `src/cses/CMakeLists.txt` registers one executable per problem directory.
+- `src/cses/CMakeLists.txt` uses an explicit `CSES_PROBLEMS` registry.
 - `.wip` marker excludes unfinished problems from build/test discovery.
 
 ### Test
@@ -53,6 +53,9 @@ Per-problem metadata file (`test.config.cmake`) can define:
 - `CP_TEST_KIND`
 - `CP_TEST_TIMEOUT_SECONDS`
 - `CP_TEST_VALIDATOR`
+- `CP_PERF_ENABLED`
+- `CP_PERF_MAX_MS`
+- `CP_PERF_RUNS`
 
 ## Problem Ownership Rules
 
@@ -89,9 +92,17 @@ Solution headers follow this order:
 ## Why This Design
 
 - One executable per problem avoids hidden coupling.
+- Explicit registration keeps build target changes intentional and reviewable.
 - CTest wiring gives immediate correctness feedback.
 - Semantic validators prevent false failures on multi-answer problems.
 - Scripted scaffolding keeps conventions consistent with low friction.
+
+## CI and Quality Gates
+
+- GitHub Actions validates debug configure/build/test on Ubuntu and macOS.
+- Formatting gate runs via `scripts/check_format.sh`.
+- ASan/UBSan job runs on Linux for undefined behavior and memory bugs.
+- Perf smoke tests run from the `perf` preset on schedule/manual trigger.
 
 ## Near-Term Improvements
 
