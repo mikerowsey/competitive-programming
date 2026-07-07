@@ -7,11 +7,8 @@
 #include <vector>
 
 void dfs(const std::vector<std::int64_t>& weights,
-         const std::vector<std::int64_t>& remaining_weight,
-         std::size_t index,
-         std::int64_t left_weight,
-         std::int64_t right_weight,
-         std::int64_t& best_difference)
+         const std::vector<std::int64_t>& remaining_weight, std::size_t index,
+         std::int64_t left_weight, std::int64_t right_weight, std::int64_t& best_difference)
 {
     if (index == weights.size()) {
         best_difference = std::min(best_difference, std::abs(left_weight - right_weight));
@@ -71,4 +68,3 @@ int main()
     std::cin.tie(nullptr);
     solve(std::cin, std::cout);
 }
-

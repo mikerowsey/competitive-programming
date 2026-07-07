@@ -1,10 +1,9 @@
 // Problem: Repetitions
 
-#include <cstdint>
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
 #include <string>
-
 
 void solve(std::istream& in, std::ostream& out)
 {

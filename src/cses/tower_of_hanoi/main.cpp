@@ -3,10 +3,7 @@
 #include <cstdint>
 #include <iostream>
 
-void hanoi(std::uint64_t disks,
-           std::uint64_t src,
-           std::uint64_t aux,
-           std::uint64_t dest,
+void hanoi(std::uint64_t disks, std::uint64_t src, std::uint64_t aux, std::uint64_t dest,
            std::ostream& out)
 {
     if (disks == 1) {

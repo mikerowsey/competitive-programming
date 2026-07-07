@@ -1,7 +1,7 @@
 // Problem: Number Spiral
 
-#include <cstdint>
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
 
 void solve(std::istream& in, std::ostream& out)
@@ -17,10 +17,7 @@ void solve(std::istream& in, std::ostream& out)
         const std::int64_t layer = std::max(row, column);
         const std::int64_t layer_center = layer * (layer - 1) + 1;
 
-        const std::int64_t offset =
-            (layer & 1)
-                ? column - row
-                : row - column;
+        const std::int64_t offset = (layer & 1) ? column - row : row - column;
 
         out << layer_center + offset << '\n';
     }

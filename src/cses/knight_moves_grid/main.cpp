@@ -50,7 +50,8 @@ void solve(std::istream& in, std::ostream& out)
             if (column > 0) {
                 out << ' ';
             }
-            out << distance[static_cast<std::size_t>(row) * static_cast<std::size_t>(n) + static_cast<std::size_t>(column)];
+            out << distance[static_cast<std::size_t>(row) * static_cast<std::size_t>(n) +
+                            static_cast<std::size_t>(column)];
         }
         out << '\n';
     }

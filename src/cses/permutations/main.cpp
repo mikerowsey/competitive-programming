@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <iostream>
 
-
 void solve(std::istream& in, std::ostream& out)
 {
     std::uint64_t n{};

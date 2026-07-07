@@ -19,7 +19,8 @@ void solve(std::istream& in, std::ostream& out)
             const char first_choice = ((row + column) % 2 == 0) ? 'A' : 'C';
             const char second_choice = ((row + column) % 2 == 0) ? 'B' : 'D';
 
-            if (grid[static_cast<std::size_t>(row)][static_cast<std::size_t>(column)] == first_choice) {
+            if (grid[static_cast<std::size_t>(row)][static_cast<std::size_t>(column)] ==
+                first_choice) {
                 out << second_choice;
             } else {
                 out << first_choice;

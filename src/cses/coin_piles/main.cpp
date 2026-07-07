@@ -13,10 +13,8 @@ void solve(std::istream& in, std::ostream& out)
         std::uint64_t second_pile{};
         in >> first_pile >> second_pile;
 
-        if (    first_pile > 2 * second_pile ||
-                second_pile > 2 * first_pile ||
-                (first_pile + second_pile) % 3 != 0) {
-
+        if (first_pile > 2 * second_pile || second_pile > 2 * first_pile ||
+            (first_pile + second_pile) % 3 != 0) {
             out << "NO" << '\n';
         } else {
             out << "YES" << '\n';

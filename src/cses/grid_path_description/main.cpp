@@ -97,7 +97,7 @@ int dfs(const int x, const int y, const int step)
     return result;
 }
 
-} // namespace
+}  // namespace
 
 void solve(std::istream& in, std::ostream& out)
 {

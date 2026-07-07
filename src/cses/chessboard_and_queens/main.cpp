@@ -4,10 +4,8 @@
 #include <iostream>
 #include <string>
 
-int search_placements(const std::array<std::string, 8>& board,
-                      std::array<bool, 8>& columns,
-                      std::array<bool, 15>& left_diagonals,
-                      std::array<bool, 15>& right_diagonals,
+int search_placements(const std::array<std::string, 8>& board, std::array<bool, 8>& columns,
+                      std::array<bool, 15>& left_diagonals, std::array<bool, 15>& right_diagonals,
                       int row)
 {
     if (row == 8) {
