@@ -1,0 +1,33 @@
+317 warnings generated.
+/Users/michael/repos/competitive-programming/src/cses/knight_moves_grid/main.cpp:60:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
+   60 | int main()
+      |     ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__new/exceptions.h:67:3: note: frame #0: unhandled exception of type 'bad_array_new_length' may be thrown in function '__throw_bad_array_new_length' here
+   67 |   throw bad_array_new_length();
+      |   ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocator.h:101:7: note: frame #1: function 'allocate' calls function '__throw_bad_array_new_length' here
+  101 |       std::__throw_bad_array_new_length();
+      |       ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocator.h:112:13: note: frame #2: function 'allocate_at_least' calls function 'allocate' here
+  112 |     return {allocate(__n), __n};
+      |             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocator_traits.h:280:14: note: frame #3: function 'allocate_at_least<std::allocator<int>>' calls function 'allocate_at_least' here
+  280 |       return __alloc.allocate_at_least(__n);
+      |              ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocate_at_least.h:26:10: note: frame #4: function '__allocate_at_least<std::allocator<int>>' calls function 'allocate_at_least<std::allocator<int>>' here
+   26 |   return std::allocator_traits<_Alloc>::allocate_at_least(__alloc, __n);
+      |          ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:574:25: note: frame #5: function '__vallocate' calls function '__allocate_at_least<std::allocator<int>>' here
+  574 |     auto __allocation = std::__allocate_at_least(this->__alloc_, __n);
+      |                         ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:171:7: note: frame #6: function 'vector' calls function '__vallocate' here
+  171 |       __vallocate(__n);
+      |       ^
+/Users/michael/repos/competitive-programming/src/cses/knight_moves_grid/main.cpp:16:22: note: frame #7: function 'solve' calls function 'vector' here
+   16 |     std::vector<int> distance(static_cast<std::size_t>(n) * static_cast<std::size_t>(n), -1);
+      |                      ^
+/Users/michael/repos/competitive-programming/src/cses/knight_moves_grid/main.cpp:64:5: note: frame #8: function 'main' calls function 'solve' here
+   64 |     solve(std::cin, std::cout);
+      |     ^
+Suppressed 316 warnings (316 in non-user code).
+Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.

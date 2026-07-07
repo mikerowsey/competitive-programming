@@ -67,6 +67,13 @@ cmake --build --preset perf
 ctest --preset perf
 ```
 
+7. Run clang-tidy during builds:
+
+```bash
+cmake --preset clang-tidy
+cmake --build --preset clang-tidy
+```
+
 ## Project Docs
 
 - Architecture and standards: [docs/architecture.md](docs/architecture.md)

@@ -13,6 +13,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(CP_ENABLE_SANITIZERS "Enable address+undefined sanitizers" OFF)
 option(CP_ENABLE_THREAD_SANITIZER "Enable thread sanitizer" OFF)
+option(CP_ENABLE_CLANG_TIDY "Enable clang-tidy during builds" OFF)
 
 if(CP_ENABLE_SANITIZERS AND CP_ENABLE_THREAD_SANITIZER)
     message(FATAL_ERROR "CP_ENABLE_SANITIZERS and CP_ENABLE_THREAD_SANITIZER cannot both be ON")
@@ -33,6 +34,16 @@ if(CP_ENABLE_THREAD_SANITIZER)
         add_link_options(-fsanitize=thread)
     else()
         message(WARNING "ThreadSanitizer requested, but compiler '${CMAKE_CXX_COMPILER_ID}' is not supported")
+    endif()
+endif()
+
+if(CP_ENABLE_CLANG_TIDY)
+    find_program(CLANG_TIDY_EXE NAMES clang-tidy)
+
+    if(CLANG_TIDY_EXE)
+        set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}")
+    else()
+        message(WARNING "CP_ENABLE_CLANG_TIDY is ON, but clang-tidy was not found; continuing without it")
     endif()
 endif()
 

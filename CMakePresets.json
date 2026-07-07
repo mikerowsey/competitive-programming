@@ -50,6 +50,14 @@
     },
 
     {
+      "name": "clang-tidy",
+      "inherits": "debug",
+      "cacheVariables": {
+        "CP_ENABLE_CLANG_TIDY": "ON"
+      }
+    },
+
+    {
       "name": "perf",
       "inherits": "release",
       "cacheVariables": {
@@ -74,6 +82,10 @@
     {
       "name": "tsan",
       "configurePreset": "tsan"
+    },
+    {
+      "name": "clang-tidy",
+      "configurePreset": "clang-tidy"
     },
     {
       "name": "perf",

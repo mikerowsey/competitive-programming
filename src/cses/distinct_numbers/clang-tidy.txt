@@ -1,0 +1,21 @@
+317 warnings generated.
+/Users/michael/repos/competitive-programming/src/cses/distinct_numbers/main.cpp:37:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
+   37 | int main()
+      |     ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdexcept:244:3: note: frame #0: unhandled exception of type 'length_error' may be thrown in function '__throw_length_error' here
+  244 |   throw length_error(__msg);
+      |   ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:777:79: note: frame #1: function '__throw_length_error' calls function '__throw_length_error' here
+  777 |   [[__noreturn__]] _LIBCPP_HIDE_FROM_ABI static void __throw_length_error() { std::__throw_length_error("vector"); }
+      |                                                                               ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:1099:7: note: frame #2: function 'reserve' calls function '__throw_length_error' here
+ 1099 |       this->__throw_length_error();
+      |       ^
+/Users/michael/repos/competitive-programming/src/cses/distinct_numbers/main.cpp:14:5: note: frame #3: function 'solve' calls function 'reserve' here
+   14 |     numbers.reserve(n);
+      |     ^
+/Users/michael/repos/competitive-programming/src/cses/distinct_numbers/main.cpp:41:5: note: frame #4: function 'main' calls function 'solve' here
+   41 |     solve(std::cin, std::cout);
+      |     ^
+Suppressed 316 warnings (316 in non-user code).
+Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
