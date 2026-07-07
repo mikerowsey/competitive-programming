@@ -22,6 +22,7 @@ set(CSES_PROBLEMS
     permutations
     raab_game_i
     repetitions
+    restaurant_customers
     string_reorder
     tower_of_hanoi
     trailing_zeros
