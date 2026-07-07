@@ -41,7 +41,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang-format
 
       - name: Check formatting
-        run: ./scripts/check_format.sh
+        run: ./scripts/check_format.sh --all
 
   clang-tidy:
     runs-on: ubuntu-latest
