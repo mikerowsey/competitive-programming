@@ -17,6 +17,7 @@ set(CSES_PROBLEMS
     knight_moves_grid
     mex_grid_construction
     missing_number
+    movie_festival
     number_spiral
     palindrome_reorder
     permutations
