@@ -34,15 +34,6 @@ mkdir -p "$problem_dir"
 
 cat > "$problem_dir/main.cpp" <<EOF2
 // Problem: ${problem_title}
-//
-// Pattern:
-// Technique:
-//
-// Time:
-// Space:
-//
-// Insight:
-//
 
 #include <iostream>
 
@@ -66,20 +57,36 @@ EOF2
 cat > "$problem_dir/notes.md" <<'EOF2'
 # Notes
 
+## Problem Header
+
+// Problem:
+//
+// Pattern:
+// Technique:
+//
+// Time:
+// Space:
+//
+// Insight:
+
 ## Constraints
+
 - Paste official input limits here.
 
 ## Complexity Budget
+
 - Target time complexity:
 - Target space complexity:
 
 ## Edge Cases Checklist
+
 - Minimum n / empty-like cases
 - Maximum constraints
 - Monotonic or repeated values
 - Potential overflow boundaries
 
 ## Approach Draft
+
 - Pattern:
 - Key invariant:
 - Data structures:

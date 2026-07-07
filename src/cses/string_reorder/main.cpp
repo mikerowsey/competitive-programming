@@ -1,16 +1,4 @@
 // Problem: String Reorder
-//
-// Pattern: Greedy Construction
-// Technique: Lexicographic Choice with Feasibility Check
-//
-// Time: O(26 * n)
-// Space: O(n)
-//
-// Insight:
-//   Build the answer left-to-right. At each position, try letters from A to Z
-//   (excluding previous letter) and pick the first one that keeps the rest
-//   feasible: max remaining frequency <= ceil(remaining_length / 2).
-//
 
 #include <algorithm>
 #include <array>

@@ -1,16 +1,4 @@
 // Problem: Number Spiral
-//
-// Pattern: Mathematical Observation
-// Technique: Layer-Based Coordinate Mapping
-//
-// Time: O(t)
-// Space: O(1)
-//
-// Insight:
-//   Every coordinate lies on a square layer whose side length is max(row,
-//   column). The center value of that layer is layer * (layer - 1) + 1.
-//   The answer is an offset from the center determined by the parity of the
-//   layer.
 
 #include <cstdint>
 #include <algorithm>

@@ -1,16 +1,4 @@
 // Problem: Palindrome Reorder
-//
-// Pattern: Counting
-// Technique: Frequency Analysis
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   Count the occurrences of each character. A palindrome can contain at
-//   most one character with an odd frequency. Print half of each character
-//   in ascending order, the odd-frequency character (if any), then the
-//   remaining halves in reverse order.
 
 #include <array>
 #include <cstdint>

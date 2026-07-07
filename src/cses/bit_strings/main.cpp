@@ -1,16 +1,4 @@
 // Problem: Bit Strings
-//
-// Pattern: Modular Arithmetic
-// Technique: Binary Exponentiation (Modular Exponentiation)
-//
-// Time: O(log n)
-// Space: O(1)
-//
-// Insight:
-//   Compute 2^n modulo 1,000,000,007 using exponentiation by squaring.
-//   Repeatedly square the base and multiply it into the result whenever the
-//   current bit of the exponent is set, reducing modulo MOD after each
-//   multiplication to keep the intermediate values bounded.
 
 #include <cstdint>
 #include <iostream>

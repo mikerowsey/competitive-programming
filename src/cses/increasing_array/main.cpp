@@ -1,15 +1,4 @@
 // Problem: Increasing Array
-//
-// Pattern: Linear Scan
-// Technique: Running maximum
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   Traverse the array once, keeping track of the minimum allowed value
-//   (the previous element). When a value is too small, add the required
-//   increment; otherwise, update the running maximum.
 
 #include <cstdint>
 #include <iostream>

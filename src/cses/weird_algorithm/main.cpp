@@ -1,15 +1,4 @@
 // Problem: Weird Algorithm
-//
-// Pattern: Simulation
-// Technique: Iterative State Update
-//
-// Time: O(k)   k = number of terms generated
-// Space: O(1)
-//
-// Insight:
-//   Repeatedly apply the Collatz rules until reaching 1. Each iteration
-//   updates the current value in place, so only constant extra memory is
-//   required.
 
 #include <cstdint>
 #include <iostream>

@@ -1,15 +1,4 @@
 // Problem: Permutations
-//
-// Pattern: Constructive Algorithm
-// Technique: Even-Odd Ordering
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   Adjacent numbers differ by at least two when all even numbers are listed
-//   first, followed by all odd numbers. The only exceptions are n = 2 and
-//   n = 3, where no valid permutation exists.
 
 #include <cstdint>
 #include <iostream>

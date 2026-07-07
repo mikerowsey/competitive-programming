@@ -2,19 +2,19 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Number Spiral
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Mathematical Observation
+// Technique: Layer-Based Coordinate Mapping
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(t)
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   Every coordinate lies on a square layer whose side length is max(row,
+//   column). The center value of that layer is layer * (layer - 1) + 1.
+//   The answer is an offset from the center determined by the parity of the
+//   layer.
 
 ## Constraints
 

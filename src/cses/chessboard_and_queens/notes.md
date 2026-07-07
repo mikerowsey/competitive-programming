@@ -2,19 +2,19 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Chessboard and Queens
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Depth-First Search
+// Technique: Backtracking
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(8!)
+// Space: O(8)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   Place one queen in each row while tracking occupied columns and
+//   diagonals. Skip blocked squares and prune invalid placements
+//   immediately. The search explores only legal partial configurations
+//   and counts all complete arrangements.
 
 ## Constraints
 

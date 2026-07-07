@@ -1,15 +1,4 @@
 // Problem: Repetitions
-//
-// Pattern: Linear Scan
-// Technique: Run-length counting
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   Traverse the string once, counting consecutive identical characters.
-//   Reset the count when the character changes and track the maximum run
-//   length seen.
 
 #include <cstdint>
 #include <algorithm>

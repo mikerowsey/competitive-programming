@@ -1,16 +1,4 @@
 // Problem: Creating Strings
-//
-// Pattern: Enumeration
-// Technique: Lexicographic permutation generation
-//
-// Time: O(n! · n)
-// Space: O(n)
-//
-// Insight:
-//   Sort the characters first, then repeatedly call std::next_permutation().
-//   Starting from the lexicographically smallest arrangement guarantees that
-//   every distinct permutation is generated exactly once, even when duplicate
-//   characters are present.
 
 #include <algorithm>
 #include <array>

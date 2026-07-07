@@ -2,19 +2,19 @@
 
 ## Problem Header
 
-// Problem: String Reorder
+// Problem: Creating Strings
 //
-// Pattern: Greedy Construction
-// Technique: Lexicographic Choice with Feasibility Check
+// Pattern: Enumeration
+// Technique: Lexicographic permutation generation
 //
-// Time: O(26 * n)
+// Time: O(n! · n)
 // Space: O(n)
 //
 // Insight:
-//   Build the answer left-to-right. At each position, try letters from A to Z
-//   (excluding previous letter) and pick the first one that keeps the rest
-//   feasible: max remaining frequency <= ceil(remaining_length / 2).
-//
+//   Sort the characters first, then repeatedly call std::next_permutation().
+//   Starting from the lexicographically smallest arrangement guarantees that
+//   every distinct permutation is generated exactly once, even when duplicate
+//   characters are present.
 
 ## Constraints
 

@@ -1,15 +1,4 @@
 // Problem: Trailing Zeros
-//
-// Pattern: Mathematical Observation
-// Technique: Repeated Division
-//
-// Time: O(log₅ n)
-// Space: O(1)
-//
-// Insight:
-//   Each trailing zero is produced by a factor of 10 = 2 × 5. Since there
-//   are always more factors of 2 than 5 in n!, count the number of factors
-//   of 5 by repeatedly dividing n by powers of 5.
 
 #include <cstdint>
 #include <iostream>

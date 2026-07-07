@@ -25,7 +25,7 @@
 - Prefer problem-name-first communication and references.
 - Keep code clang-format clean to pass the style gate.
 
-## Header Template for `main.cpp`
+## Header Template for `notes.md`
 
 Use this exact section order:
 
@@ -38,6 +38,8 @@ Use this exact section order:
 7. `// Space: ...`
 8. blank line (`//`)
 9. `// Insight:`
+
+Keep `main.cpp` minimal: the top comment should only identify the problem.
 
 ## Solution Checklist
 

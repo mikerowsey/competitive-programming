@@ -2,19 +2,19 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Two Knights
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Mathematical Derivation
+// Technique: Closed-Form Formula
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(n)
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   For each k × k chessboard, count all unordered pairs of knight
+//   placements, then subtract the pairs where the knights attack each
+//   other. The resulting expression simplifies to the closed-form formula
+//   implemented below.
 
 ## Constraints
 

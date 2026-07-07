@@ -2,19 +2,18 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Permutations
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Constructive Algorithm
+// Technique: Even-Odd Ordering
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(n)
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   Adjacent numbers differ by at least two when all even numbers are listed
+//   first, followed by all odd numbers. The only exceptions are n = 2 and
+//   n = 3, where no valid permutation exists.
 
 ## Constraints
 

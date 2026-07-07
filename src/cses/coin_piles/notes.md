@@ -2,19 +2,19 @@
 
 ## Problem Header
 
-// Problem: Digit Queries
+// Problem: Coin Piles
 //
-// Pattern: Math / Place-Value Blocks
-// Technique: Block Subtraction + Index in Number
+// Pattern: Mathematical Observation
+// Technique: Necessary and Sufficient Conditions
 //
-// Time: O(q * log10(k))
+// Time: O(t)
 // Space: O(1)
 //
 // Insight:
-//   Digits appear in blocks by number length: 1-digit, 2-digit, etc.
-//   Subtract whole blocks until the target digit index lands in one block,
-//   then locate the exact number and digit inside it.
-//
+//   The larger pile can never contain more than twice as many coins as
+//   the smaller pile. Additionally, the total number of coins must be
+//   divisible by three, since each move removes exactly three coins. Both
+//   conditions are necessary and sufficient.
 
 ## Constraints
 

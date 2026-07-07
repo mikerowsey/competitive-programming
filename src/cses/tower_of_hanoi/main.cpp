@@ -1,15 +1,4 @@
 // Problem: Tower of Hanoi
-//
-// Pattern: Recursion
-// Technique: Divide and Conquer
-//
-// Time: O(2^n)
-// Space: O(n)
-//
-// Insight:
-//   To move n disks from source to destination, first move n - 1 disks to
-//   the auxiliary peg, move the largest disk to the destination, then move
-//   the n - 1 disks from the auxiliary peg to the destination.
 
 #include <cstdint>
 #include <iostream>

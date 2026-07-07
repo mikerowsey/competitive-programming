@@ -1,17 +1,4 @@
 // Problem: Apple Division
-//
-// Pattern: Depth-First Search
-// Technique: Branch and Bound
-//
-// Time: O(2^n)
-// Space: O(n)
-//
-// Insight:
-//   Sort the weights in descending order and assign each apple to one of
-//   two groups using DFS. At each step, compare the current weight
-//   difference with the total remaining weight. If the remaining apples
-//   cannot improve the current best possible difference, prune the branch
-//   immediately.
 
 #include <algorithm>
 #include <cstdint>

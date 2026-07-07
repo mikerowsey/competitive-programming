@@ -1,16 +1,4 @@
 // Problem: Digit Queries
-//
-// Pattern: Math / Place-Value Blocks
-// Technique: Block Subtraction + Index in Number
-//
-// Time: O(q * log10(k))
-// Space: O(1)
-//
-// Insight:
-//   Digits appear in blocks by number length: 1-digit, 2-digit, etc.
-//   Subtract whole blocks until the target digit index lands in one block,
-//   then locate the exact number and digit inside it.
-//
 
 #include <cstdint>
 #include <iostream>

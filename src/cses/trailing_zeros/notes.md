@@ -2,19 +2,18 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Trailing Zeros
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Mathematical Observation
+// Technique: Repeated Division
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(log₅ n)
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   Each trailing zero is produced by a factor of 10 = 2 × 5. Since there
+//   are always more factors of 2 than 5 in n!, count the number of factors
+//   of 5 by repeatedly dividing n by powers of 5.
 
 ## Constraints
 

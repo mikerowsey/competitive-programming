@@ -2,19 +2,18 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Weird Algorithm
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Simulation
+// Technique: Iterative State Update
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(k)   k = number of terms generated
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   Repeatedly apply the Collatz rules until reaching 1. Each iteration
+//   updates the current value in place, so only constant extra memory is
+//   required.
 
 ## Constraints
 

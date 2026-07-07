@@ -1,16 +1,4 @@
 // Problem: Two Knights
-//
-// Pattern: Mathematical Derivation
-// Technique: Closed-Form Formula
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   For each k × k chessboard, count all unordered pairs of knight
-//   placements, then subtract the pairs where the knights attack each
-//   other. The resulting expression simplifies to the closed-form formula
-//   implemented below.
 
 #include <cstdint>
 #include <iostream>

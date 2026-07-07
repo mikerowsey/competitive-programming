@@ -1,15 +1,4 @@
 // Problem: Gray Code
-//
-// Pattern: Bit Manipulation
-// Technique: Gray Code Formula
-//
-// Time: O(2ⁿ × n)
-// Space: O(1)
-//
-// Insight:
-//   The Gray code corresponding to the binary value i is i ^ (i >> 1).
-//   Compute each Gray code directly, then print its bits from most
-//   significant to least significant.
 
 #include <cstdint>
 #include <iostream>

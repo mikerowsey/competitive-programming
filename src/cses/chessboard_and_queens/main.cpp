@@ -1,16 +1,4 @@
 // Problem: Chessboard and Queens
-//
-// Pattern: Depth-First Search
-// Technique: Backtracking
-//
-// Time: O(8!)
-// Space: O(8)
-//
-// Insight:
-//   Place one queen in each row while tracking occupied columns and
-//   diagonals. Skip blocked squares and prune invalid placements
-//   immediately. The search explores only legal partial configurations
-//   and counts all complete arrangements.
 
 #include <array>
 #include <iostream>

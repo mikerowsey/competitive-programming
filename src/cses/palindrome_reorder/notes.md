@@ -2,19 +2,19 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Palindrome Reorder
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Counting
+// Technique: Frequency Analysis
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(n)
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   Count the occurrences of each character. A palindrome can contain at
+//   most one character with an odd frequency. Print half of each character
+//   in ascending order, the odd-frequency character (if any), then the
+//   remaining halves in reverse order.
 
 ## Constraints
 

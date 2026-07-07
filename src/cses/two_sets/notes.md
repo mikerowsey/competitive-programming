@@ -2,19 +2,18 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Two Sets
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Greedy
+// Technique: Largest-First Partition
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(n)
+// Space: O(n)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   If the total sum is odd, no partition exists. Otherwise, repeatedly
+//   take the largest value that does not exceed the remaining target sum.
+//   This greedy strategy constructs one valid partition in a single pass.
 
 ## Constraints
 

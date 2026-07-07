@@ -2,19 +2,18 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Tower of Hanoi
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Recursion
+// Technique: Divide and Conquer
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(2^n)
+// Space: O(n)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   To move n disks from source to destination, first move n - 1 disks to
+//   the auxiliary peg, move the largest disk to the destination, then move
+//   the n - 1 disks from the auxiliary peg to the destination.
 
 ## Constraints
 

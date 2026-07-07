@@ -2,19 +2,18 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Repetitions
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Linear Scan
+// Technique: Run-length counting
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(n)
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   Traverse the string once, counting consecutive identical characters.
+//   Reset the count when the character changes and track the maximum run
+//   length seen.
 
 ## Constraints
 

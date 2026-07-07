@@ -1,13 +1,4 @@
 // Problem: Distinct Numbers
-//
-// Pattern: Count unique values in a batch.
-// Technique: Read all values, sort them, and count changes between neighbors.
-//
-// Time: O(n log n).
-// Space: O(n).
-//
-// Insight: Sorting groups equal values together, so one linear scan counts
-// the distinct numbers.
 
 #include <algorithm>
 #include <cstdint>

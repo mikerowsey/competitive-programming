@@ -2,19 +2,18 @@
 
 ## Problem Header
 
-// Problem: Grid Coloring I
+// Problem: Gray Code
 //
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
+// Pattern: Bit Manipulation
+// Technique: Gray Code Formula
 //
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
+// Time: O(2ⁿ × n)
+// Space: O(1)
 //
 // Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+//   The Gray code corresponding to the binary value i is i ^ (i >> 1).
+//   Compute each Gray code directly, then print its bits from most
+//   significant to least significant.
 
 ## Constraints
 

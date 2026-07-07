@@ -1,16 +1,4 @@
 // Problem: Grid Coloring I
-//
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
-//
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
-//
-// Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
 
 #include <iostream>
 #include <vector>
