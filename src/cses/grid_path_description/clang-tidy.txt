@@ -1,30 +1,3 @@
-317 warnings generated.
-/Users/michael/repos/competitive-programming/src/cses/grid_path_description/grid_path_description.cpp:120:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
-  120 | int main()
-      |     ^
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdexcept:244:3: note: frame #0: unhandled exception of type 'length_error' may be thrown in function '__throw_length_error' here
-  244 |   throw length_error(__msg);
-      |   ^
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string:2473:5: note: frame #1: function '__throw_length_error' calls function '__throw_length_error' here
- 2473 |     std::__throw_length_error("basic_string");
-      |     ^
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string:2745:5: note: frame #2: function '__grow_by' calls function '__throw_length_error' here
- 2745 |     this->__throw_length_error();
-      |     ^
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string:2776:3: note: frame #3: function '__grow_by_without_replace' calls function '__grow_by' here
- 2776 |   __grow_by(__old_cap, __delta_cap, __old_sz, __n_copy, __n_del, __n_add);
-      |   ^
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string:3081:5: note: frame #4: function 'push_back' calls function '__grow_by_without_replace' here
- 3081 |     __grow_by_without_replace(__cap, 1, __sz, __sz, 0);
-      |     ^
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/istream:1241:9: note: frame #5: function 'operator>><char, std::char_traits<char>, std::allocator<char>>' calls function 'push_back' here
- 1241 |         __str.push_back(__ch);
-      |         ^
-/Users/michael/repos/competitive-programming/src/cses/grid_path_description/grid_path_description.cpp:105:8: note: frame #6: function 'solve' calls function 'operator>><char, std::char_traits<char>, std::allocator<char>>' here
-  105 |     in >> pattern;
-      |        ^
-/Users/michael/repos/competitive-programming/src/cses/grid_path_description/grid_path_description.cpp:124:5: note: frame #7: function 'main' calls function 'solve' here
-  124 |     solve(std::cin, std::cout);
-      |     ^
+316 warnings generated.
 Suppressed 316 warnings (316 in non-user code).
 Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
