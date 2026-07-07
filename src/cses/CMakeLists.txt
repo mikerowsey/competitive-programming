@@ -1,6 +1,7 @@
 set(CP_ENABLE_PERF_TESTS OFF CACHE BOOL "Enable performance smoke tests")
 
 set(CSES_PROBLEMS
+    apartments
     apple_division
     bit_strings
     chessboard_and_queens
