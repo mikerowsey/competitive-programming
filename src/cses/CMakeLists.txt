@@ -25,6 +25,7 @@ set(CSES_PROBLEMS
     repetitions
     restaurant_customers
     string_reorder
+    sum_of_two_values
     tower_of_hanoi
     trailing_zeros
     two_knights
