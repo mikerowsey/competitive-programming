@@ -58,6 +58,27 @@ jobs:
       - name: Build (clang-tidy)
         run: cmake --build --preset clang-tidy
 
+      - name: Run clang-tidy checks
+        run: |
+          echo "Running clang-tidy on all source files..."
+          WARNING_COUNT=0
+          for file in $(find src/cses -name "*.cpp" -type f); do
+            OUTPUT=$(clang-tidy "$file" -p build/clang-tidy 2>&1 || true)
+            if echo "$OUTPUT" | grep -q "warning:"; then
+              echo "⚠️  Warnings in $file"
+              echo "$OUTPUT" | grep "warning:"
+              WARNING_COUNT=$((WARNING_COUNT + 1))
+            fi
+          done
+
+          if [ $WARNING_COUNT -gt 0 ]; then
+            echo ""
+            echo "❌ clang-tidy found warnings in $WARNING_COUNT file(s). Fix before merging."
+            exit 1
+          else
+            echo "✅ No clang-tidy warnings found."
+          fi
+
   asan:
     runs-on: ubuntu-latest
     steps:
@@ -88,3 +109,41 @@ jobs:
 
       - name: Test (Perf label)
         run: ctest --preset perf
+
+  clang-tidy-weekly-report:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install clang-tidy
+        run: sudo apt-get update && sudo apt-get install -y clang-tidy
+
+      - name: Configure (clang-tidy)
+        run: cmake --preset clang-tidy
+
+      - name: Build (clang-tidy)
+        run: cmake --build --preset clang-tidy
+
+      - name: Generate clang-tidy reports
+        run: |
+          echo "Generating per-problem clang-tidy reports..."
+          for dir in src/cses/*/; do
+            PROBLEM_NAME=$(basename "$dir")
+            REPORT_FILE="$dir/clang-tidy.txt"
+            CPP_FILE="$dir/${PROBLEM_NAME}.cpp"
+
+            if [ -f "$CPP_FILE" ]; then
+              echo "📊 Generating report for $PROBLEM_NAME..."
+              clang-tidy "$CPP_FILE" -p build/clang-tidy > "$REPORT_FILE" 2>&1 || true
+            fi
+          done
+          echo "✅ Reports generated in each problem directory."
+
+      - name: Upload reports as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: clang-tidy-reports
+          path: src/cses/**/clang-tidy.txt
+          retention-days: 30
