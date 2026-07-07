@@ -25,7 +25,7 @@ competitive-programming/
   src/
     cses/
       <problem_slug>/
-        main.cpp
+        <problem_slug>.cpp
         test_input.txt
         test_output.txt
         test.config.cmake (optional)
@@ -61,7 +61,7 @@ Per-problem metadata file (`test.config.cmake`) can define:
 
 Each problem folder owns:
 
-- implementation (`main.cpp`)
+- implementation (`<problem_slug>.cpp`)
 - local fixtures (`test_input.txt`, `test_output.txt`)
 - optional test metadata (`test.config.cmake`)
 

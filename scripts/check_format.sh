@@ -11,7 +11,7 @@ cd "$repo_root"
 
 collect_files() {
   if [[ "${1:-}" == "--all" ]]; then
-    git ls-files '*.cpp' '*.cc' '*.cxx' '*.hpp' '*.hh' '*.hxx'
+    find src -type f \( -name '*.cpp' -o -name '*.cc' -o -name '*.cxx' -o -name '*.hpp' -o -name '*.hh' -o -name '*.hxx' \) | sort
     return
   fi
 
@@ -38,6 +38,7 @@ collect_files() {
 }
 
 files="$(collect_files "${1:-}" | awk 'NF' | awk '!seen[$0]++')"
+files="$(printf "%s\n" "$files" | while IFS= read -r file; do [[ -f "$file" ]] && printf "%s\n" "$file"; done)"
 
 if [[ -z "$files" ]]; then
   echo "No C++ files selected for formatting check."

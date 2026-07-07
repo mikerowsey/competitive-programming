@@ -36,7 +36,7 @@ set(CSES_PROBLEMS
 foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
     set(PROBLEM_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${PROBLEM_NAME}")
     set(WIP_MARKER_FILE "${PROBLEM_DIR}/.wip")
-    set(MAIN_FILE "${PROBLEM_DIR}/main.cpp")
+    set(MAIN_FILE "${PROBLEM_DIR}/${PROBLEM_NAME}.cpp")
     set(TEST_INPUT_FILE "${PROBLEM_DIR}/test_input.txt")
     set(TEST_OUTPUT_FILE "${PROBLEM_DIR}/test_output.txt")
     set(TEST_CONFIG_FILE "${PROBLEM_DIR}/test.config.cmake")
@@ -47,7 +47,7 @@ foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
     endif()
 
     if(NOT EXISTS "${MAIN_FILE}")
-        message(STATUS "Skipping ${PROBLEM_NAME}: missing main.cpp")
+        message(STATUS "Skipping ${PROBLEM_NAME}: missing ${PROBLEM_NAME}.cpp")
         continue()
     endif()
 

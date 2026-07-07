@@ -29,7 +29,7 @@ fi
 files=()
 while IFS= read -r file; do
   files+=("$file")
-done < <(find src/cses -mindepth 2 -maxdepth 2 -name main.cpp | sort)
+done < <(find src/cses -mindepth 2 -maxdepth 2 -name '*.cpp' | sort)
 
 if [[ ${#files[@]} -eq 0 ]]; then
   echo "No problem source files found under src/cses" >&2

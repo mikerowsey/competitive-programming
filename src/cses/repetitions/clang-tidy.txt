@@ -1,5 +1,5 @@
 317 warnings generated.
-/Users/michael/repos/competitive-programming/src/cses/repetitions/main.cpp:29:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
+/Users/michael/repos/competitive-programming/src/cses/repetitions/repetitions.cpp:29:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
    29 | int main()
       |     ^
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdexcept:244:3: note: frame #0: unhandled exception of type 'length_error' may be thrown in function '__throw_length_error' here
@@ -20,10 +20,10 @@
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/istream:1241:9: note: frame #5: function 'operator>><char, std::char_traits<char>, std::allocator<char>>' calls function 'push_back' here
  1241 |         __str.push_back(__ch);
       |         ^
-/Users/michael/repos/competitive-programming/src/cses/repetitions/main.cpp:11:8: note: frame #6: function 'solve' calls function 'operator>><char, std::char_traits<char>, std::allocator<char>>' here
+/Users/michael/repos/competitive-programming/src/cses/repetitions/repetitions.cpp:11:8: note: frame #6: function 'solve' calls function 'operator>><char, std::char_traits<char>, std::allocator<char>>' here
    11 |     in >> s;
       |        ^
-/Users/michael/repos/competitive-programming/src/cses/repetitions/main.cpp:33:5: note: frame #7: function 'main' calls function 'solve' here
+/Users/michael/repos/competitive-programming/src/cses/repetitions/repetitions.cpp:33:5: note: frame #7: function 'main' calls function 'solve' here
    33 |     solve(std::cin, std::cout);
       |     ^
 Suppressed 316 warnings (316 in non-user code).

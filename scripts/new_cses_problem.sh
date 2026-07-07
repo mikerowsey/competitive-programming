@@ -24,6 +24,7 @@ fi
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 problem_dir="$repo_root/src/cses/$slug"
 cmake_registry_file="$repo_root/src/cses/CMakeLists.txt"
+source_file="$problem_dir/$slug.cpp"
 
 if [[ -e "$problem_dir" ]]; then
   echo "Problem directory already exists: $problem_dir" >&2
@@ -32,7 +33,7 @@ fi
 
 mkdir -p "$problem_dir"
 
-cat > "$problem_dir/main.cpp" <<EOF2
+cat > "$source_file" <<EOF2
 // Problem: ${problem_title}
 
 #include <iostream>
@@ -167,7 +168,7 @@ PY
 echo "Created: $problem_dir"
 echo "Updated explicit registry: $cmake_registry_file"
 echo "Next:"
-echo "  1) Fill in main.cpp algorithm/header fields"
+echo "  1) Fill in ${slug}.cpp algorithm/header fields"
 echo "  2) Add sample test_input.txt and test_output.txt"
 echo "  3) Update notes.md while solving"
 echo "  4) Run: cmake --preset debug && ctest --test-dir build/debug -R '^cses\\.${slug}$' --output-on-failure"

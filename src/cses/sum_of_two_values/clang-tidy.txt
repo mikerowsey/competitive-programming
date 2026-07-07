@@ -1,5 +1,5 @@
 317 warnings generated.
-/Users/michael/repos/competitive-programming/src/cses/sum_of_two_values/main.cpp:44:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
+/Users/michael/repos/competitive-programming/src/cses/sum_of_two_values/sum_of_two_values.cpp:44:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
    44 | int main()
       |     ^
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdexcept:244:3: note: frame #0: unhandled exception of type 'length_error' may be thrown in function '__throw_length_error' here
@@ -14,10 +14,10 @@
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:150:7: note: frame #3: function 'vector' calls function '__vallocate' here
   150 |       __vallocate(__n);
       |       ^
-/Users/michael/repos/competitive-programming/src/cses/sum_of_two_values/main.cpp:15:56: note: frame #4: function 'solve' calls function 'vector' here
+/Users/michael/repos/competitive-programming/src/cses/sum_of_two_values/sum_of_two_values.cpp:15:56: note: frame #4: function 'solve' calls function 'vector' here
    15 |     std::vector<std::pair<std::size_t, std::uint32_t>> values(value_count);
       |                                                        ^
-/Users/michael/repos/competitive-programming/src/cses/sum_of_two_values/main.cpp:48:5: note: frame #5: function 'main' calls function 'solve' here
+/Users/michael/repos/competitive-programming/src/cses/sum_of_two_values/sum_of_two_values.cpp:48:5: note: frame #5: function 'main' calls function 'solve' here
    48 |     solve(std::cin, std::cout);
       |     ^
 Suppressed 316 warnings (316 in non-user code).

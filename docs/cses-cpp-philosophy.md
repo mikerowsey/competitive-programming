@@ -39,7 +39,7 @@ Use this exact section order:
 8. blank line (`//`)
 9. `// Insight:`
 
-Keep `main.cpp` minimal: the top comment should only identify the problem.
+Keep each problem source file minimal: the top comment should only identify the problem.
 
 ## Solution Checklist
 

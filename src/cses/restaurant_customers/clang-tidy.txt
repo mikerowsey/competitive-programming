@@ -1,5 +1,5 @@
 317 warnings generated.
-/Users/michael/repos/competitive-programming/src/cses/restaurant_customers/main.cpp:45:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
+/Users/michael/repos/competitive-programming/src/cses/restaurant_customers/restaurant_customers.cpp:45:5: warning: an exception may be thrown in function 'main' which should not throw exceptions [bugprone-exception-escape]
    45 | int main()
       |     ^
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdexcept:244:3: note: frame #0: unhandled exception of type 'length_error' may be thrown in function '__throw_length_error' here
@@ -11,10 +11,10 @@
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:1099:7: note: frame #2: function 'reserve' calls function '__throw_length_error' here
  1099 |       this->__throw_length_error();
       |       ^
-/Users/michael/repos/competitive-programming/src/cses/restaurant_customers/main.cpp:15:5: note: frame #3: function 'solve' calls function 'reserve' here
+/Users/michael/repos/competitive-programming/src/cses/restaurant_customers/restaurant_customers.cpp:15:5: note: frame #3: function 'solve' calls function 'reserve' here
    15 |     events.reserve(customer_count * 2);
       |     ^
-/Users/michael/repos/competitive-programming/src/cses/restaurant_customers/main.cpp:49:5: note: frame #4: function 'main' calls function 'solve' here
+/Users/michael/repos/competitive-programming/src/cses/restaurant_customers/restaurant_customers.cpp:49:5: note: frame #4: function 'main' calls function 'solve' here
    49 |     solve(std::cin, std::cout);
       |     ^
 Suppressed 316 warnings (316 in non-user code).
