@@ -9,6 +9,7 @@ set(CSES_PROBLEMS
     creating_strings
     digit_queries
     distinct_numbers
+    ferris_wheel
     gray_code_bit
     grid_coloring_i
     grid_path_description
