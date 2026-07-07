@@ -1,38 +1,40 @@
-# Notes
+# Problem: Weird Algorithm
 
-## Problem Header
+# Statement
 
-// Problem: Weird Algorithm
-//
-// Pattern: Simulation
-// Technique: Iterative State Update
-//
-// Time: O(k)   k = number of terms generated
-// Space: O(1)
-//
-// Insight:
-//   Repeatedly apply the Collatz rules until reaching 1. Each iteration
-//   updates the current value in place, so only constant extra memory is
-//   required.
+Time limit: 1.00 s
+Memory limit: 512 MB
 
-## Constraints
+Consider an algorithm that takes as input a positive integer n. If n is even, the algorithm divides it by two, and if n is odd, the algorithm multiplies it by three and adds one. The algorithm repeats this, until n is one. For example, the sequence for n=3 is as follows:
+$$ 3 \rightarrow 10 \rightarrow 5 \rightarrow 16 \rightarrow 8 \rightarrow 4 \rightarrow 2 \rightarrow 1$$
+Your task is to simulate the execution of the algorithm for a given value of n.
+Input
+The only input line contains an integer n.
+Output
+Print a line that contains all values of n during the algorithm.
+Constraints
 
-- Paste official input limits here.
+$1 \le n \le 10^6$
 
-## Complexity Budget
+Example
+Input:
+3
 
-- Target time complexity:
-- Target space complexity:
+Output:
+3 10 5 16 8 4 2 1
+
+## Solution
+
+Technique: Iterative State Update
+
+Time: O(k)   k = number of terms generated
+
+Space: O(1)
+
+## Insight:
+
+   Repeatedly apply the Collatz rules until reaching 1. Each iteration
+   updates the current value in place, so only constant extra memory is
+   required.
 
 ## Edge Cases Checklist
-
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
