@@ -10,6 +10,7 @@ BraceWrapping:
   AfterFunction: true
 
   # Keep Google style everywhere else
+
   AfterClass: false
   AfterControlStatement: Never
   AfterEnum: false

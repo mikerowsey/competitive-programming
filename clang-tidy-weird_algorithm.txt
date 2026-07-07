@@ -1,0 +1,38 @@
+320 warnings generated.
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:9:5: warning: 1st function call argument is an uninitialized value [clang-analyzer-core.CallAndMessage]
+    9 |     out << n << '\n';
+      |     ^
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:33:5: note: Calling 'solve'
+   33 |     solve(std::cin, std::cout);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:8:5: note: 'n' declared without an initial value
+    8 |     std::uint64_t n;
+      |     ^~~~~~~~~~~~~~~
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:9:5: note: 1st function call argument is an uninitialized value
+    9 |     out << n << '\n';
+      |     ^      ~
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:9:12: warning: variable 'n' is uninitialized when used here [clang-diagnostic-uninitialized]
+    9 |     out << n << '\n';
+      |            ^
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:8:20: note: initialize the variable 'n' to silence this warning
+    8 |     std::uint64_t n;
+      |                    ^
+      |                     = 0
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:14:15: warning: an assignment within an 'if' condition is bug-prone [bugprone-assignment-in-if-condition]
+   14 |         if (n = 1) {
+      |             ~~^~~
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:14:15: note: if it should be an assignment, move it out of the 'if' condition
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:14:15: note: if it is meant to be an equality check, change '=' to '=='
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:14:15: warning: using the result of an assignment as a condition without parentheses [clang-diagnostic-parentheses]
+   14 |         if (n = 1) {
+      |             ~~^~~
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:14:15: note: place parentheses around the assignment to silence this warning
+   14 |         if (n = 1) {
+      |               ^  
+      |             (    )
+/Users/michael/repos/competitive-programming/src/cses/weird_algorithm/main.cpp:14:15: note: use '==' to turn this assignment into an equality comparison
+   14 |         if (n = 1) {
+      |               ^
+      |               ==
+Suppressed 316 warnings (316 in non-user code).
+Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
