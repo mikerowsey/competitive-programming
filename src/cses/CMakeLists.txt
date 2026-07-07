@@ -7,6 +7,7 @@ set(CSES_PROBLEMS
     coin_piles
     creating_strings
     digit_queries
+    distinct_numbers
     gray_code_bit
     grid_coloring_i
     grid_path_description

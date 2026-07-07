@@ -1,0 +1,51 @@
+// Problem: Distinct Numbers
+//
+// Pattern: Count unique values in a batch.
+// Technique: Read all values, sort them, and count changes between neighbors.
+//
+// Time: O(n log n).
+// Space: O(n).
+//
+// Insight: Sorting groups equal values together, so one linear scan counts
+// the distinct numbers.
+
+#include <algorithm>
+#include <cstdint>
+#include <iostream>
+#include <vector>
+
+void solve(std::istream& in, std::ostream& out)
+{
+    std::uint64_t n;
+    in >> n;
+
+    std::vector<std::uint64_t> numbers;
+    numbers.reserve(n);
+    for (std::uint64_t i = 0; i < n; ++i) {
+        std::uint64_t x;
+        in >> x;
+        numbers.push_back(x);
+    }
+
+    std::sort(numbers.begin(), numbers.end());
+
+    std::uint64_t distinct_count = 0;
+    std::uint64_t previous = 0;
+    bool first = true;
+    for (const std::uint64_t value : numbers) {
+        if (first || value != previous) {
+            ++distinct_count;
+            previous = value;
+            first = false;
+        }
+    }
+
+    out << distinct_count << "\n";
+}
+
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    solve(std::cin, std::cout);
+}
