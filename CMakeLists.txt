@@ -17,10 +17,10 @@ option(CP_ENABLE_CLANG_TIDY "Enable clang-tidy during builds" OFF)
 
 # Validate clang-tidy environment setup
 if(CP_ENABLE_CLANG_TIDY)
-    if(NOT DEFINED ENV{CC} OR NOT DEFINED ENV{CXX})
-        message(FATAL_ERROR "Please set CC & CXX environment variables.")
-    endif()
     if(APPLE)
+        if(NOT DEFINED ENV{CC} OR NOT DEFINED ENV{CXX})
+            message(FATAL_ERROR "macOS requires CC & CXX environment variables.")
+        endif()
         if(NOT DEFINED ENV{SDKROOT})
             message(FATAL_ERROR "macOS requires SDKROOT environment variable.")
         endif()
