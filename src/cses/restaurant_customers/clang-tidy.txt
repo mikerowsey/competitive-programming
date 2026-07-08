@@ -1,6 +1,0 @@
-1 error generated.
-Error while processing /Users/michael/repos/competitive-programming/src/cses/restaurant_customers/restaurant_customers.cpp.
-/Users/michael/repos/competitive-programming/src/cses/restaurant_customers/restaurant_customers.cpp:3:10: error: 'algorithm' file not found [clang-diagnostic-error]
-    3 | #include <algorithm>
-      |          ^~~~~~~~~~~
-Found compiler error(s).

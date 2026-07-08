@@ -1,6 +1,0 @@
-1 error generated.
-Error while processing /Users/michael/repos/competitive-programming/src/cses/knight_moves_grid/knight_moves_grid.cpp.
-/Users/michael/repos/competitive-programming/src/cses/knight_moves_grid/knight_moves_grid.cpp:3:10: error: 'array' file not found [clang-diagnostic-error]
-    3 | #include <array>
-      |          ^~~~~~~
-Found compiler error(s).

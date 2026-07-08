@@ -1,6 +1,0 @@
-1 error generated.
-Error while processing /Users/michael/repos/competitive-programming/src/cses/string_reorder/string_reorder.cpp.
-/Users/michael/repos/competitive-programming/src/cses/string_reorder/string_reorder.cpp:3:10: error: 'algorithm' file not found [clang-diagnostic-error]
-    3 | #include <algorithm>
-      |          ^~~~~~~~~~~
-Found compiler error(s).

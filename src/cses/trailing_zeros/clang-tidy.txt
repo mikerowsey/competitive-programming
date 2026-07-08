@@ -1,9 +1,0 @@
-1 warning and 1 error generated.
-Error while processing /Users/michael/repos/competitive-programming/src/cses/trailing_zeros/trailing_zeros.cpp.
-/Users/michael/repos/competitive-programming/src/cses/trailing_zeros/trailing_zeros.cpp:3:10: error: 'cstdint' file not found [clang-diagnostic-error]
-    3 | #include <cstdint>
-      |          ^~~~~~~~~
-/Users/michael/repos/competitive-programming/src/cses/trailing_zeros/trailing_zeros.cpp:13:5: warning: this loop is infinite; none of its condition variables (n) are updated in the loop body [bugprone-infinite-loop]
-   13 |     while (n != 0) {
-      |     ^
-Found compiler error(s).

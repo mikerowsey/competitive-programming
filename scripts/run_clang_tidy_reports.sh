@@ -16,13 +16,22 @@ if [[ ! -d "$build_dir" ]]; then
   exit 1
 fi
 
+report_file="$build_dir/clang-tidy-report.txt"
+: > "$report_file"  # Clear the report file
+
 count=0
 while IFS= read -r file; do
-  dir="$(dirname "$file")"
-  out="$dir/clang-tidy.txt"
-  clang-tidy "$file" -p "$build_dir" > "$out" 2>&1 || true
+  problem_name="$(basename "$(dirname "$file")")"
+  {
+    echo "================================================================================"
+    echo "Problem: $problem_name"
+    echo "File: $file"
+    echo "================================================================================"
+    clang-tidy "$file" -p "$build_dir" 2>&1 || true
+    echo ""
+  } >> "$report_file"
   count=$((count + 1))
-  echo "Wrote $out"
+  echo "Processed $file"
 done < <(find src/cses -mindepth 2 -maxdepth 2 -name '*.cpp' | sort)
 
 if [[ $count -eq 0 ]]; then
@@ -30,5 +39,5 @@ if [[ $count -eq 0 ]]; then
   exit 1
 fi
 
-echo "Generated clang-tidy reports for $count problem(s)."
+echo "Generated clang-tidy report for $count problem(s) at $report_file"
 
