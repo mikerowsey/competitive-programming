@@ -128,6 +128,7 @@ export SDKROOT=$(xcrun --show-sdk-path)
 
 ```bash
 cmake --preset clang-tidy
+cmake --build --preset clang-tidy
 ./scripts/run_clang_tidy_reports.sh
 ```
 
