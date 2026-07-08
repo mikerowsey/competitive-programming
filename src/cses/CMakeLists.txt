@@ -25,6 +25,7 @@ set(CSES_PROBLEMS
     raab_game_i
     repetitions
     restaurant_customers
+    stick_lengths
     string_reorder
     sum_of_two_values
     tower_of_hanoi
