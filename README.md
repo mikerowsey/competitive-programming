@@ -106,7 +106,7 @@ To use clang-tidy on your local machine (macOS with homebrew llvm):
 1. Run the setup script once:
 
 ```bash
-./scripts/setup-clang-tidy.sh
+./scripts/macos-setup-clang-tidy.sh
 ```
 
 This will:
