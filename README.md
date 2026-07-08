@@ -98,3 +98,37 @@ GitHub Actions runs:
 - clang-format gate
 - ASan/UBSan test pass
 - scheduled/manual perf smoke run
+
+## Clang-Tidy Setup
+
+To use clang-tidy on your local machine (macOS with homebrew llvm):
+
+1. Run the setup script once:
+
+```bash
+./scripts/setup-clang-tidy.sh
+```
+
+This will:
+
+- Create a symlink: `~/.local/bin/clang-tidy`
+- Guide you to add env vars to your stow-managed `.zprofile`
+- Validate the setup
+
+2. Add this to your `.zprofile` (inside the homebrew guard):
+
+```bash
+# LLVM toolchain (default C/C++ compiler)
+export CC=/opt/homebrew/opt/llvm/bin/clang
+export CXX=/opt/homebrew/opt/llvm/bin/clang++
+export SDKROOT=$(xcrun --show-sdk-path)
+```
+
+3. Generate per-problem clang-tidy reports:
+
+```bash
+cmake --preset clang-tidy
+./scripts/run_clang_tidy_reports.sh
+```
+
+Reports are saved to `src/cses/<problem>/clang-tidy.txt`.
