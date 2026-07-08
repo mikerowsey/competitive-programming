@@ -15,6 +15,7 @@ set(CSES_PROBLEMS
     grid_path_description
     increasing_array
     knight_moves_grid
+    maximum_subarray_sum
     mex_grid_construction
     missing_number
     movie_festival
