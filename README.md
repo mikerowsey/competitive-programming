@@ -124,11 +124,11 @@ export CXX=/opt/homebrew/opt/llvm/bin/clang++
 export SDKROOT=$(xcrun --show-sdk-path)
 ```
 
-3. Generate per-problem clang-tidy reports:
+3. Generate clang-tidy report for all problems:
 
 ```bash
 cmake --preset clang-tidy
 ./scripts/run_clang_tidy_reports.sh
 ```
 
-Reports are saved to `src/cses/<problem>/clang-tidy.txt`.
+Report is saved to `build/clang-tidy/clang-tidy-report.txt`.

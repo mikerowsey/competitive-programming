@@ -39,8 +39,7 @@ DartConfiguration.tcl
 *.pdb
 *.dSYM/
 
-# Generated static analysis reports
-**/clang-tidy.txt
+# Generated static analysis reports (see build/clang-tidy/clang-tidy-report.txt)
 
 # Coverage
 *.gcda
