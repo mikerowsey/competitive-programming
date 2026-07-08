@@ -1,3 +1,6 @@
-316 warnings generated.
-Suppressed 316 warnings (316 in non-user code).
-Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 error generated.
+Error while processing /Users/michael/repos/competitive-programming/src/cses/ferris_wheel/ferris_wheel.cpp.
+/Users/michael/repos/competitive-programming/src/cses/ferris_wheel/ferris_wheel.cpp:3:10: error: 'algorithm' file not found [clang-diagnostic-error]
+    3 | #include <algorithm>
+      |          ^~~~~~~~~~~
+Found compiler error(s).

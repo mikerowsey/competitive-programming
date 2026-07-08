@@ -1,3 +1,9 @@
-316 warnings generated.
-Suppressed 316 warnings (316 in non-user code).
-Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning and 1 error generated.
+Error while processing /Users/michael/repos/competitive-programming/src/cses/two_knights/two_knights.cpp.
+/Users/michael/repos/competitive-programming/src/cses/two_knights/two_knights.cpp:3:10: error: 'cstdint' file not found [clang-diagnostic-error]
+    3 | #include <cstdint>
+      |          ^~~~~~~~~
+/Users/michael/repos/competitive-programming/src/cses/two_knights/two_knights.cpp:13:5: warning: this loop is infinite; none of its condition variables (board_size) are updated in the loop body [bugprone-infinite-loop]
+   13 |     for (std::uint64_t board_size{2}; board_size <= max_board_size; ++board_size) {
+      |     ^
+Found compiler error(s).

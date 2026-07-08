@@ -16,19 +16,11 @@ if [[ ! -d "$build_dir" ]]; then
   exit 1
 fi
 
-# On macOS, clang-tidy needs SDK path to find system headers
-extra_args=()
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  if sdk_path="$(xcrun --show-sdk-path 2>/dev/null)"; then
-    extra_args+=(--extra-arg=-isysroot --extra-arg="$sdk_path")
-  fi
-fi
-
 count=0
 while IFS= read -r file; do
   dir="$(dirname "$file")"
   out="$dir/clang-tidy.txt"
-  clang-tidy "$file" -p "$build_dir" "${extra_args[@]}" > "$out" 2>&1 || true
+  clang-tidy "$file" -p "$build_dir" > "$out" 2>&1 || true
   count=$((count + 1))
   echo "Wrote $out"
 done < <(find src/cses -mindepth 2 -maxdepth 2 -name '*.cpp' | sort)

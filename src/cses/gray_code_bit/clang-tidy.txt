@@ -1,3 +1,9 @@
-316 warnings generated.
-Suppressed 316 warnings (316 in non-user code).
-Use -header-filter=.* or leave it as default to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning and 1 error generated.
+Error while processing /Users/michael/repos/competitive-programming/src/cses/gray_code_bit/gray_code_bit.cpp.
+/Users/michael/repos/competitive-programming/src/cses/gray_code_bit/gray_code_bit.cpp:3:10: error: 'cstdint' file not found [clang-diagnostic-error]
+    3 | #include <cstdint>
+      |          ^~~~~~~~~
+/Users/michael/repos/competitive-programming/src/cses/gray_code_bit/gray_code_bit.cpp:22:9: warning: this loop is infinite; none of its condition variables (bit) are updated in the loop body [bugprone-infinite-loop]
+   22 |         while (bit > 0) {
+      |         ^
+Found compiler error(s).
