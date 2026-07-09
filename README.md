@@ -108,7 +108,8 @@ The scaffolder now also updates the explicit problem registry in `src/cses/CMake
 
 GitHub Actions runs:
 
-- debug configure/build/test on Ubuntu and macOS
+- debug configure/build/test on Ubuntu (push/PR)
+- debug configure/build/test on macOS (weekly/manual)
 - clang-format gate
 - clang-tidy on changed files for push/PR
 - ASan/UBSan test pass
