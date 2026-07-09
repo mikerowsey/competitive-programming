@@ -1,40 +1,33 @@
 # Problem: Weird Algorithm
 
-# Statement
+CSES URL: [https://cses.fi/problemset/task/1068](https://cses.fi/problemset/task/1068)
 
-Time limit: 1.00 s
-Memory limit: 512 MB
+## Statement
 
-Consider an algorithm that takes as input a positive integer n. If n is even, the algorithm divides it by two, and if n is odd, the algorithm multiplies it by three and adds one. The algorithm repeats this, until n is one. For example, the sequence for n=3 is as follows:
-$$ 3 \rightarrow 10 \rightarrow 5 \rightarrow 16 \rightarrow 8 \rightarrow 4 \rightarrow 2 \rightarrow 1$$
-Your task is to simulate the execution of the algorithm for a given value of n.
-Input
-The only input line contains an integer n.
-Output
-Print a line that contains all values of n during the algorithm.
-Constraints
+Consider an algorithm that takes as input a positive integer n. If n is even, the algorithm divides it by two, and if n is odd, the algorithm multiplies it by three and adds one. The algorithm repeats this, until n is one. For example, the...
 
-$1 \le n \le 10^6$
+See the official CSES page for complete details.
 
-Example
-Input:
-3
-
-Output:
-3 10 5 16 8 4 2 1
+Source: [https://cses.fi/problemset/task/1068](https://cses.fi/problemset/task/1068)
 
 ## Solution
 
+Pattern: Simulation
+
 Technique: Iterative State Update
 
-Time: O(k)   k = number of terms generated
+Time: O(k) k = number of terms generated
 
 Space: O(1)
 
-## Insight:
+## Insight
 
-   Repeatedly apply the Collatz rules until reaching 1. Each iteration
-   updates the current value in place, so only constant extra memory is
-   required.
+Repeatedly apply the Collatz rules until reaching 1. Each iteration updates
+the current value in place, so only constant extra memory is required.
 
 ## Edge Cases Checklist
+
+- n = 1 should print exactly `1`.
+- Very short chains (for example n = 2) should terminate correctly.
+- Odd values must use `3n + 1`, then continue with even halving.
+- Output must be space-separated values on one line.

@@ -1,39 +1,35 @@
-# Notes
+# Problem: Creating Strings
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1622](https://cses.fi/problemset/task/1622)
 
-// Problem: Creating Strings
-//
-// Pattern: Enumeration
-// Technique: Lexicographic permutation generation
-//
-// Time: O(n! · n)
-// Space: O(n)
-//
-// Insight:
-//   Sort the characters first, then repeatedly call std::next_permutation().
-//   Starting from the lexicographically smallest arrangement guarantees that
-//   every distinct permutation is generated exactly once, even when duplicate
-//   characters are present.
+## Statement
 
-## Constraints
+Given a string, your task is to generate all different strings that can be created using its characters.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1622](https://cses.fi/problemset/task/1622)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Enumeration
+
+Technique: Lexicographic permutation generation
+
+Time: O(n! · n)
+
+Space: O(n)
+
+## Insight
+
+Sort the characters first, then repeatedly call std::next_permutation().
+Starting from the lexicographically smallest arrangement guarantees that
+every distinct permutation is generated exactly once, even when duplicate
+characters are present.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

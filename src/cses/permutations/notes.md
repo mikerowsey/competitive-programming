@@ -1,38 +1,34 @@
-# Notes
+# Problem: Permutations
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1070](https://cses.fi/problemset/task/1070)
 
-// Problem: Permutations
-//
-// Pattern: Constructive Algorithm
-// Technique: Even-Odd Ordering
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   Adjacent numbers differ by at least two when all even numbers are listed
-//   first, followed by all odd numbers. The only exceptions are n = 2 and
-//   n = 3, where no valid permutation exists.
+## Statement
 
-## Constraints
+A permutation of integers 1,2,\ldots,n is called beautiful if there are no adjacent elements whose difference is 1.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1070](https://cses.fi/problemset/task/1070)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Constructive Algorithm
+
+Technique: Even-Odd Ordering
+
+Time: O(n)
+
+Space: O(1)
+
+## Insight
+
+Adjacent numbers differ by at least two when all even numbers are listed
+first, followed by all odd numbers. The only exceptions are n = 2 and
+n = 3, where no valid permutation exists.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

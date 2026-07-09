@@ -1,36 +1,33 @@
-# Notes
+# Problem: Distinct Numbers
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1621](https://cses.fi/problemset/task/1621)
 
-// Problem: Distinct Numbers
-//
-// Pattern: Count unique values in a batch.
-// Technique: Read all values, sort them, and count changes between neighbors.
-//
-// Time: O(n log n).
-// Space: O(n).
-//
-// Insight: Sorting groups equal values together, so one linear scan counts
-// the distinct numbers.
+## Statement
 
-## Constraints
+You are given a list of n integers, and your task is to calculate the number of distinct values in the list.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1621](https://cses.fi/problemset/task/1621)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Count unique values in a batch.
+
+Technique: Read all values, sort them, and count changes between neighbors.
+
+Time: O(n log n).
+
+Space: O(n).
+
+## Insight
+
+Sorting groups equal values together, so one linear scan counts
+the distinct numbers.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

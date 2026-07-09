@@ -1,39 +1,34 @@
-# Notes
+# Problem: Grid Path Description
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1625](https://cses.fi/problemset/task/1625)
 
-// Problem: Grid Path Description
-//
-// Pattern: Backtracking Search
-// Technique: DFS with Corridor Pruning
-//
-// Time: O(search states), fast enough with pruning
-// Space: O(1) extra (fixed board + recursion depth 48)
-//
-// Insight:
-//   Search all paths on a 7x7 board that match the description string.
-//   Prune states that split the unvisited area into disconnected parts and
-//   force moves into one-exit neighbors to avoid sealing cells early.
-//
+## Statement
 
-## Constraints
+There are 88418 paths in a 7 imes 7 grid from the upper-left square to the lower-left square. Each path corresponds to a 48-character description consisting of characters D (down), U (up), L (left) and R (right).
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1625](https://cses.fi/problemset/task/1625)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Backtracking Search
+
+Technique: DFS with Corridor Pruning
+
+Time: O(search states), fast enough with pruning
+
+Space: O(1) extra (fixed board + recursion depth 48)
+
+## Insight
+
+Search all paths on a 7x7 board that match the description string.
+Prune states that split the unvisited area into disconnected parts and
+force moves into one-exit neighbors to avoid sealing cells early.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

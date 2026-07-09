@@ -1,38 +1,34 @@
-# Notes
+# Problem: Repetitions
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1069](https://cses.fi/problemset/task/1069)
 
-// Problem: Repetitions
-//
-// Pattern: Linear Scan
-// Technique: Run-length counting
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   Traverse the string once, counting consecutive identical characters.
-//   Reset the count when the character changes and track the maximum run
-//   length seen.
+## Statement
 
-## Constraints
+You are given a DNA sequence: a string consisting of characters A, C, G, and T. Your task is to find the longest repetition in the sequence. This is a maximum-length substring containing only one type of character.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1069](https://cses.fi/problemset/task/1069)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Linear Scan
+
+Technique: Run-length counting
+
+Time: O(n)
+
+Space: O(1)
+
+## Insight
+
+Traverse the string once, counting consecutive identical characters.
+Reset the count when the character changes and track the maximum run
+length seen.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

@@ -1,39 +1,35 @@
-# Notes
+# Problem: Bit Strings
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1617](https://cses.fi/problemset/task/1617)
 
-// Problem: Bit Strings
-//
-// Pattern: Modular Arithmetic
-// Technique: Binary Exponentiation (Modular Exponentiation)
-//
-// Time: O(log n)
-// Space: O(1)
-//
-// Insight:
-//   Compute 2^n modulo 1,000,000,007 using exponentiation by squaring.
-//   Repeatedly square the base and multiply it into the result whenever the
-//   current bit of the exponent is set, reducing modulo MOD after each
-//   multiplication to keep the intermediate values bounded.
+## Statement
 
-## Constraints
+Your task is to calculate the number of bit strings of length n.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1617](https://cses.fi/problemset/task/1617)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Modular Arithmetic
+
+Technique: Binary Exponentiation (Modular Exponentiation)
+
+Time: O(log n)
+
+Space: O(1)
+
+## Insight
+
+Compute 2^n modulo 1,000,000,007 using exponentiation by squaring.
+Repeatedly square the base and multiply it into the result whenever the
+current bit of the exponent is set, reducing modulo MOD after each
+multiplication to keep the intermediate values bounded.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

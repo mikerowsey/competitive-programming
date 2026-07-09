@@ -1,38 +1,34 @@
-# Notes
+# Problem: Trailing Zeros
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1618](https://cses.fi/problemset/task/1618)
 
-// Problem: Trailing Zeros
-//
-// Pattern: Mathematical Observation
-// Technique: Repeated Division
-//
-// Time: O(log₅ n)
-// Space: O(1)
-//
-// Insight:
-//   Each trailing zero is produced by a factor of 10 = 2 × 5. Since there
-//   are always more factors of 2 than 5 in n!, count the number of factors
-//   of 5 by repeatedly dividing n by powers of 5.
+## Statement
 
-## Constraints
+Your task is to calculate the number of trailing zeros in the factorial n!.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1618](https://cses.fi/problemset/task/1618)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Mathematical Observation
+
+Technique: Repeated Division
+
+Time: O(log₅ n)
+
+Space: O(1)
+
+## Insight
+
+Each trailing zero is produced by a factor of 10 = 2 × 5. Since there
+are always more factors of 2 than 5 in n!, count the number of factors
+of 5 by repeatedly dividing n by powers of 5.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

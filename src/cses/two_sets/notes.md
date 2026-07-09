@@ -1,38 +1,34 @@
-# Notes
+# Problem: Two Sets
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1092](https://cses.fi/problemset/task/1092)
 
-// Problem: Two Sets
-//
-// Pattern: Greedy
-// Technique: Largest-First Partition
-//
-// Time: O(n)
-// Space: O(n)
-//
-// Insight:
-//   If the total sum is odd, no partition exists. Otherwise, repeatedly
-//   take the largest value that does not exceed the remaining target sum.
-//   This greedy strategy constructs one valid partition in a single pass.
+## Statement
 
-## Constraints
+Your task is to divide the numbers 1,2,\ldots,n into two sets of equal sum.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1092](https://cses.fi/problemset/task/1092)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Greedy
+
+Technique: Largest-First Partition
+
+Time: O(n)
+
+Space: O(n)
+
+## Insight
+
+If the total sum is odd, no partition exists. Otherwise, repeatedly
+take the largest value that does not exceed the remaining target sum.
+This greedy strategy constructs one valid partition in a single pass.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

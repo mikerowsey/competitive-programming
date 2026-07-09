@@ -1,39 +1,35 @@
-# Notes
+# Problem: Palindrome Reorder
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1755](https://cses.fi/problemset/task/1755)
 
-// Problem: Palindrome Reorder
-//
-// Pattern: Counting
-// Technique: Frequency Analysis
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   Count the occurrences of each character. A palindrome can contain at
-//   most one character with an odd frequency. Print half of each character
-//   in ascending order, the odd-frequency character (if any), then the
-//   remaining halves in reverse order.
+## Statement
 
-## Constraints
+Given a string, your task is to reorder its letters in such a way that it becomes a palindrome (i.e., it reads the same forwards and backwards).
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1755](https://cses.fi/problemset/task/1755)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Counting
+
+Technique: Frequency Analysis
+
+Time: O(n)
+
+Space: O(1)
+
+## Insight
+
+Count the occurrences of each character. A palindrome can contain at
+most one character with an odd frequency. Print half of each character
+in ascending order, the odd-frequency character (if any), then the
+remaining halves in reverse order.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

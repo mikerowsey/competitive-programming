@@ -1,37 +1,32 @@
-# Notes
+# Problem: Maximum Subarray Sum
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1643](https://cses.fi/problemset/task/1643)
 
-// Problem: Maximum Subarray Sum
-//
-// Pattern: Prefix sums with extrema tracking
-// Technique: Single pass, track running min and max
-//
-// Time: O(n)
-// Space: O(n)
-//
-// Insight: Maximum subarray sum = max(prefix[i] - min(prefix[0..i-1]))
+## Statement
 
-## Constraints
+Given an array of n integers, your task is to find the maximum sum of values in a contiguous, nonempty subarray.
 
-- 1 ≤ n ≤ 2·10⁵
-- -10⁹ ≤ a_i ≤ 10⁹
-- Sum may not fit in 32-bit signed integer; use int64_t
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1643](https://cses.fi/problemset/task/1643)
 
-- Target time complexity: O(n)
-- Target space complexity: O(n)
+## Solution
+
+Pattern: Prefix sums with extrema tracking
+
+Technique: Single pass, track running min and max
+
+Time: O(n)
+
+Space: O(n)
+
+## Insight
+
+Maximum subarray sum = max(prefix[i] - min(prefix[0..i-1]))
 
 ## Edge Cases Checklist
 
-- [ ] n = 1 (single element is max subarray)
-- [ ] All negative values (take single least negative element)
-- [ ] All positive values (take entire array)
-- [ ] Overflow: sums can reach ±2·10¹⁴
-
-## Approach Draft
-
-- Pattern: Prefix sum + min tracking
-- Key invariant: For each position i, compute sums[i] - minimum prefix seen before i
-- Data structures: Vector for prefix sums, scalars for running min/max
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

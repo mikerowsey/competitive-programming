@@ -1,39 +1,34 @@
-# Notes
+# Problem: Digit Queries
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/2431](https://cses.fi/problemset/task/2431)
 
-// Problem: Digit Queries
-//
-// Pattern: Math / Place-Value Blocks
-// Technique: Block Subtraction + Index in Number
-//
-// Time: O(q * log10(k))
-// Space: O(1)
-//
-// Insight:
-//   Digits appear in blocks by number length: 1-digit, 2-digit, etc.
-//   Subtract whole blocks until the target digit index lands in one block,
-//   then locate the exact number and digit inside it.
-//
+## Statement
 
-## Constraints
+Consider an infinite string that consists of all positive integers in increasing order:
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/2431](https://cses.fi/problemset/task/2431)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Math / Place-Value Blocks
+
+Technique: Block Subtraction + Index in Number
+
+Time: O(q * log10(k))
+
+Space: O(1)
+
+## Insight
+
+Digits appear in blocks by number length: 1-digit, 2-digit, etc.
+Subtract whole blocks until the target digit index lands in one block,
+then locate the exact number and digit inside it.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

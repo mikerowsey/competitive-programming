@@ -1,39 +1,35 @@
-# Notes
+# Problem: Chessboard and Queens
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1624](https://cses.fi/problemset/task/1624)
 
-// Problem: Chessboard and Queens
-//
-// Pattern: Depth-First Search
-// Technique: Backtracking
-//
-// Time: O(8!)
-// Space: O(8)
-//
-// Insight:
-//   Place one queen in each row while tracking occupied columns and
-//   diagonals. Skip blocked squares and prune invalid placements
-//   immediately. The search explores only legal partial configurations
-//   and counts all complete arrangements.
+## Statement
 
-## Constraints
+Your task is to place eight queens on a chessboard so that no two queens are attacking each other. As an additional challenge, each square is either free or reserved, and you can only place queens on the free squares. However, the reserved...
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1624](https://cses.fi/problemset/task/1624)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Depth-First Search
+
+Technique: Backtracking
+
+Time: O(8!)
+
+Space: O(8)
+
+## Insight
+
+Place one queen in each row while tracking occupied columns and
+diagonals. Skip blocked squares and prune invalid placements
+immediately. The search explores only legal partial configurations
+and counts all complete arrangements.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

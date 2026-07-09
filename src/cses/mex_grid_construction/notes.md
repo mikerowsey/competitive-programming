@@ -1,40 +1,35 @@
-# Notes
+# Problem: Mex Grid Construction
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/3419](https://cses.fi/problemset/task/3419)
 
-// Problem: Mex Grid Construction
-//
-// Pattern: Constructive Math
-// Technique: Bitwise XOR Table
-//
-// Time: O(n^2)
-// Space: O(1)
-//
-// Insight:
-//   The unique mex-defined grid equals `a[i][j]` = i xor j (0-indexed).
-//   For each cell, the union of values to the left in the same row and
-//   above in the same column contains every value smaller than (i xor j),
-//   while (i xor j) itself is absent, so mex is exactly (i xor j).
-//
+## Statement
 
-## Constraints
+Your task is to construct an n imes n grid where each square has the smallest nonnegative integer that does not appear to the left on the same row or above on the same column.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/3419](https://cses.fi/problemset/task/3419)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Constructive Math
+
+Technique: Bitwise XOR Table
+
+Time: O(n^2)
+
+Space: O(1)
+
+## Insight
+
+The unique mex-defined grid equals `a[i][j]` = i xor j (0-indexed).
+For each cell, the union of values to the left in the same row and
+above in the same column contains every value smaller than (i xor j),
+while (i xor j) itself is absent, so mex is exactly (i xor j).
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

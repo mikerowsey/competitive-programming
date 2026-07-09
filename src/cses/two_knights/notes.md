@@ -1,39 +1,35 @@
-# Notes
+# Problem: Two Knights
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1072](https://cses.fi/problemset/task/1072)
 
-// Problem: Two Knights
-//
-// Pattern: Mathematical Derivation
-// Technique: Closed-Form Formula
-//
-// Time: O(n)
-// Space: O(1)
-//
-// Insight:
-//   For each k × k chessboard, count all unordered pairs of knight
-//   placements, then subtract the pairs where the knights attack each
-//   other. The resulting expression simplifies to the closed-form formula
-//   implemented below.
+## Statement
 
-## Constraints
+Your task is to count for k=1,2,\ldots,n the number of ways two knights can be placed on a k \times k chessboard so that they do not attack each other.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1072](https://cses.fi/problemset/task/1072)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Mathematical Derivation
+
+Technique: Closed-Form Formula
+
+Time: O(n)
+
+Space: O(1)
+
+## Insight
+
+For each k × k chessboard, count all unordered pairs of knight
+placements, then subtract the pairs where the knights attack each
+other. The resulting expression simplifies to the closed-form formula
+implemented below.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

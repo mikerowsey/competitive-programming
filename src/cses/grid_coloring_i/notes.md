@@ -1,39 +1,34 @@
-# Notes
+# Problem: Grid Coloring I
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/3311](https://cses.fi/problemset/task/3311)
 
-// Problem: Grid Coloring I
-//
-// Pattern: Constructive Coloring
-// Technique: Checkerboard Letter Sets
-//
-// Time: O(nm)
-// Space: O(1) extra (excluding output)
-//
-// Insight:
-//   Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
-//   always have different parity, so they automatically differ. For each
-//   cell, choose any letter from its parity set that is not the original.
-//
+## Statement
 
-## Constraints
+You are given an n imes m grid where each cell contains one character A, B, C or D.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/3311](https://cses.fi/problemset/task/3311)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Constructive Coloring
+
+Technique: Checkerboard Letter Sets
+
+Time: O(nm)
+
+Space: O(1) extra (excluding output)
+
+## Insight
+
+Use disjoint letter sets by parity: {A,B} and {C,D}. Adjacent cells
+always have different parity, so they automatically differ. For each
+cell, choose any letter from its parity set that is not the original.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.

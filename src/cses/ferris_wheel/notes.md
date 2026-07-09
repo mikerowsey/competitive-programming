@@ -1,38 +1,34 @@
-# Notes
+# Problem: Ferris Wheel
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/1090](https://cses.fi/problemset/task/1090)
 
-// Problem: Ferris Wheel
-//
-// Pattern: Greedy pairing
-// Technique: Sort weights and pair the lightest remaining child with the
-// heaviest when possible.
-//
-// Time: O(n log n).
-// Space: O(n).
-//
-// Insight: Once the heaviest child cannot pair with the lightest remaining
-// child, that heaviest child cannot pair with anyone and must take a gondola
-// alone.
+## Statement
 
-## Constraints
+There are n children who want to go to a Ferris wheel, and your task is to find a gondola for each child.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/1090](https://cses.fi/problemset/task/1090)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: Greedy pairing
+
+Technique: Sort weights and pair the lightest remaining child with the
+
+Time: O(n log n).
+
+Space: O(n).
+
+## Insight
+
+Once the heaviest child cannot pair with the lightest remaining
+child, that heaviest child cannot pair with anyone and must take a gondola
+alone.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size and trivial behavior.
+- Maximum constraints and performance boundaries.
+- Repeated/equal values and ordering corner cases.
+- Overflow-prone arithmetic transitions.
