@@ -38,13 +38,6 @@ std::string run_case_from_file(const std::filesystem::path& input_path)
     return out.str();
 }
 
-void expect_case_matches(const std::filesystem::path& input_path,
-                         const std::filesystem::path& expected_output_path)
-{
-    EXPECT_EQ(run_case_from_file(input_path), read_text_file(expected_output_path))
-        << "input=" << input_path.string() << " output=" << expected_output_path.string();
-}
-
 std::filesystem::path repo_path(const std::string& relative)
 {
     return std::filesystem::path(CP_REPO_ROOT) / relative;
@@ -55,6 +48,13 @@ std::string case_name_for_index(std::size_t case_index)
     std::ostringstream name;
     name << "case_" << std::setw(2) << std::setfill('0') << case_index;
     return name.str();
+}
+
+void expect_case_matches(const std::filesystem::path& input_path,
+                         const std::filesystem::path& output_path)
+{
+    EXPECT_EQ(run_case_from_file(input_path), read_text_file(output_path))
+        << "input=" << input_path.string() << " output=" << output_path.string();
 }
 
 std::vector<std::filesystem::path> discover_case_inputs(const std::filesystem::path& cases_dir)
@@ -80,9 +80,9 @@ std::vector<std::filesystem::path> discover_case_inputs(const std::filesystem::p
     return input_files;
 }
 
-class CollectingNumbersCaseTest : public ::testing::Test {
+class CollectingNumbersIICaseTest : public ::testing::Test {
    public:
-    CollectingNumbersCaseTest(std::filesystem::path input_path, std::filesystem::path output_path)
+    CollectingNumbersIICaseTest(std::filesystem::path input_path, std::filesystem::path output_path)
         : input_path_(std::move(input_path)), output_path_(std::move(output_path))
     {
     }
@@ -96,7 +96,7 @@ class CollectingNumbersCaseTest : public ::testing::Test {
 
 void register_case_tests()
 {
-    const auto cases_dir = repo_path("src/cses/collecting_numbers/gtest_cases");
+    const auto cases_dir = repo_path("src/cses/collecting_numbers_ii/gtest_cases");
     const auto input_files = discover_case_inputs(cases_dir);
 
     ASSERT_FALSE(input_files.empty()) << "No *_input.txt files found in " << cases_dir.string();
@@ -112,10 +112,10 @@ void register_case_tests()
             << "Missing output fixture for " << input_name << ": " << output_path.string();
 
         const auto test_name = case_name_for_index(case_index);
-        ::testing::RegisterTest("CollectingNumbersTest", test_name.c_str(), nullptr, nullptr,
+        ::testing::RegisterTest("CollectingNumbersIITest", test_name.c_str(), nullptr, nullptr,
                                 __FILE__, __LINE__,
-                                [input_path, output_path]() -> CollectingNumbersCaseTest* {
-                                    return new CollectingNumbersCaseTest(input_path, output_path);
+                                [input_path, output_path]() -> CollectingNumbersIICaseTest* {
+                                    return new CollectingNumbersIICaseTest(input_path, output_path);
                                 });
     }
 }

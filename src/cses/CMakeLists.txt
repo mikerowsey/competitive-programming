@@ -158,3 +158,68 @@ foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
         endif()
     endif()
 endforeach()
+
+if(BUILD_TESTING AND CP_ENABLE_GOOGLETEST)
+    include(FetchContent)
+
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+    )
+    FetchContent_MakeAvailable(googletest)
+
+    add_executable(
+        collecting_numbers_gtest
+        collecting_numbers/collecting_numbers.cpp
+        collecting_numbers/collecting_numbers_gtest.cpp
+    )
+
+    target_compile_definitions(
+        collecting_numbers_gtest
+        PRIVATE
+            CP_DISABLE_MAIN
+            CP_REPO_ROOT="${PROJECT_SOURCE_DIR}"
+    )
+
+    target_link_libraries(
+        collecting_numbers_gtest
+        PRIVATE
+            cp_project_options
+            cp_project_warnings
+            cp_sanitizers
+            GTest::gtest_main
+    )
+
+    include(GoogleTest)
+    gtest_discover_tests(
+        collecting_numbers_gtest
+        TEST_PREFIX gtest.cses.collecting_numbers.
+    )
+
+    add_executable(
+        collecting_numbers_ii_gtest
+        collecting_numbers_ii/collecting_numbers_ii.cpp
+        collecting_numbers_ii/collecting_numbers_ii_gtest.cpp
+    )
+
+    target_compile_definitions(
+        collecting_numbers_ii_gtest
+        PRIVATE
+            CP_DISABLE_MAIN
+            CP_REPO_ROOT="${PROJECT_SOURCE_DIR}"
+    )
+
+    target_link_libraries(
+        collecting_numbers_ii_gtest
+        PRIVATE
+            cp_project_options
+            cp_project_warnings
+            cp_sanitizers
+            GTest::gtest_main
+    )
+
+    gtest_discover_tests(
+        collecting_numbers_ii_gtest
+        TEST_PREFIX gtest.cses.collecting_numbers_ii.
+    )
+endif()

@@ -55,42 +55,39 @@ EOF2
 : > "$problem_dir/test_input.txt"
 : > "$problem_dir/test_output.txt"
 
-cat > "$problem_dir/notes.md" <<'EOF2'
-# Notes
+cat > "$problem_dir/notes.md" <<EOF2
+# Problem: ${problem_title}
 
-## Problem Header
+CSES URL: [https://cses.fi/problemset/task/TODO](https://cses.fi/problemset/task/TODO)
 
-// Problem:
-//
-// Pattern:
-// Technique:
-//
-// Time:
-// Space:
-//
-// Insight:
+## Statement
 
-## Constraints
+Add a concise paraphrased statement here.
 
-- Paste official input limits here.
+See the official CSES page for complete details.
 
-## Complexity Budget
+Source: [https://cses.fi/problemset/task/TODO](https://cses.fi/problemset/task/TODO)
 
-- Target time complexity:
-- Target space complexity:
+## Solution
+
+Pattern: TODO
+
+Technique: TODO
+
+Time: TODO
+
+Space: TODO
+
+## Insight
+
+Add the key invariant or proof sketch here.
 
 ## Edge Cases Checklist
 
-- Minimum n / empty-like cases
-- Maximum constraints
-- Monotonic or repeated values
-- Potential overflow boundaries
-
-## Approach Draft
-
-- Pattern:
-- Key invariant:
-- Data structures:
+- Minimum input size.
+- Maximum constraints.
+- Repeated values / ties (if applicable).
+- Overflow boundaries (if applicable).
 EOF2
 
 if [[ "$test_kind" == "semantic" ]]; then

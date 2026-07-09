@@ -40,6 +40,14 @@
     },
 
     {
+      "name": "base-googletest",
+      "hidden": true,
+      "cacheVariables": {
+        "CP_ENABLE_GOOGLETEST": "ON"
+      }
+    },
+
+    {
       "name": "base-macos-llvm",
       "hidden": true,
       "inherits": "base",
@@ -125,6 +133,11 @@
     },
 
     {
+      "name": "debug-googletest",
+      "inherits": ["base-debug", "base-googletest"]
+    },
+
+    {
       "name": "perf",
       "inherits": "release",
       "cacheVariables": {
@@ -179,6 +192,10 @@
       "configurePreset": "clang-tidy"
     },
     {
+      "name": "debug-googletest",
+      "configurePreset": "debug-googletest"
+    },
+    {
       "name": "perf",
       "configurePreset": "perf"
     }
@@ -195,6 +212,13 @@
     {
       "name": "asan",
       "configurePreset": "asan",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "debug-googletest",
+      "configurePreset": "debug-googletest",
       "output": {
         "outputOnFailure": true
       }
