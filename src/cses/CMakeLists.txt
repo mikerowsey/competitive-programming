@@ -15,6 +15,7 @@ set(CSES_PROBLEMS
     knight_moves_grid
     maximum_subarray_sum
     mex_grid_construction
+    missing_coin_sum
     missing_number
     movie_festival
     number_spiral
