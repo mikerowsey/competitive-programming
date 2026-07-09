@@ -84,6 +84,20 @@ if [[ -z "$report_file" ]]; then
   report_file="$build_dir/clang-tidy-report.txt"
 fi
 
+compile_commands="$build_dir/compile_commands.json"
+if [[ ! -f "$compile_commands" ]]; then
+  echo "Error: Missing $compile_commands. Reconfigure the build preset to generate compile_commands.json." >&2
+  exit 1
+fi
+
+has_compile_command() {
+  local file="$1"
+  local abs_file="$repo_root/$file"
+
+  grep -Fq "\"file\": \"$abs_file\"" "$compile_commands" \
+    || grep -Fq "\"file\": \"$file\"" "$compile_commands"
+}
+
 mkdir -p "$(dirname "$report_file")"
 : > "$report_file"  # Clear the report file
 
@@ -108,9 +122,16 @@ collect_files() {
 
 count=0
 issue_count=0
+skipped_missing_compile_command=0
 while IFS= read -r file; do
   [[ -n "$file" ]] || continue
   [[ -f "$file" ]] || continue
+
+  if ! has_compile_command "$file"; then
+    skipped_missing_compile_command=$((skipped_missing_compile_command + 1))
+    echo "Skipped $file (no compile command in $compile_commands)"
+    continue
+  fi
 
   problem_name="$(basename "$(dirname "$file")")"
   output="$(clang-tidy "$file" -p "$build_dir" 2>&1 || true)"
@@ -135,11 +156,17 @@ while IFS= read -r file; do
 done < <(collect_files)
 
 if [[ $count -eq 0 ]]; then
+  if [[ $skipped_missing_compile_command -gt 0 ]]; then
+    echo "No analyzable C++ files found in compile_commands.json (skipped $skipped_missing_compile_command file(s))."
+  fi
   echo "No matching C++ files to analyze."
   exit 0
 fi
 
 echo "Generated clang-tidy report for $count file(s) at $report_file"
+if [[ $skipped_missing_compile_command -gt 0 ]]; then
+  echo "Skipped $skipped_missing_compile_command file(s) missing compile_commands entries."
+fi
 
 if [[ $fail_on_warnings -eq 1 && $issue_count -gt 0 ]]; then
   echo "clang-tidy reported findings in $issue_count file(s)."
