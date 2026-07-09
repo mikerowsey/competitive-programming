@@ -1,0 +1,26 @@
+add_library(cp_sanitizers INTERFACE)
+
+option(CP_ENABLE_SANITIZERS "Enable address+undefined sanitizers" OFF)
+option(CP_ENABLE_THREAD_SANITIZER "Enable thread sanitizer" OFF)
+
+if(CP_ENABLE_SANITIZERS AND CP_ENABLE_THREAD_SANITIZER)
+    message(FATAL_ERROR "CP_ENABLE_SANITIZERS and CP_ENABLE_THREAD_SANITIZER cannot both be ON")
+endif()
+
+if(CP_ENABLE_SANITIZERS)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+        target_compile_options(cp_sanitizers INTERFACE -fsanitize=address,undefined -fno-omit-frame-pointer)
+        target_link_options(cp_sanitizers INTERFACE -fsanitize=address,undefined)
+    else()
+        message(WARNING "Sanitizers requested, but compiler '${CMAKE_CXX_COMPILER_ID}' is not supported")
+    endif()
+endif()
+
+if(CP_ENABLE_THREAD_SANITIZER)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+        target_compile_options(cp_sanitizers INTERFACE -fsanitize=thread -fno-omit-frame-pointer)
+        target_link_options(cp_sanitizers INTERFACE -fsanitize=thread)
+    else()
+        message(WARNING "ThreadSanitizer requested, but compiler '${CMAKE_CXX_COMPILER_ID}' is not supported")
+    endif()
+endif()

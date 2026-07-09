@@ -1,5 +1,3 @@
-set(CP_ENABLE_PERF_TESTS OFF CACHE BOOL "Enable performance smoke tests")
-
 set(CSES_PROBLEMS
     apartments
     apple_division
@@ -58,18 +56,12 @@ foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
         "${MAIN_FILE}"
     )
 
-    target_compile_features(
+    target_link_libraries(
         ${PROBLEM_NAME}
         PRIVATE
-            cxx_std_23
-    )
-
-    target_compile_options(
-        ${PROBLEM_NAME}
-        PRIVATE
-            -Wall
-            -Wextra
-            -Wpedantic
+            cp_project_options
+            cp_project_warnings
+            cp_sanitizers
     )
 
     # Defaults for per-problem test metadata.

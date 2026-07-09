@@ -10,15 +10,12 @@
       "name": "base",
       "hidden": true,
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/${presetName}",
-      "cacheVariables": {
-        "CMAKE_CXX_STANDARD": "23",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-      }
+      "binaryDir": "${sourceDir}/build/${presetName}"
     },
 
     {
-      "name": "debug",
+      "name": "base-debug",
+      "hidden": true,
       "inherits": "base",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
@@ -26,11 +23,84 @@
     },
 
     {
-      "name": "release",
+      "name": "base-release",
+      "hidden": true,
       "inherits": "base",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
+    },
+
+    {
+      "name": "base-clang-tidy",
+      "hidden": true,
+      "cacheVariables": {
+        "CP_ENABLE_CLANG_TIDY": "ON"
+      }
+    },
+
+    {
+      "name": "base-macos-llvm",
+      "hidden": true,
+      "inherits": "base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "toolchainFile": "${sourceDir}/cmake/toolchains/macos-llvm.cmake"
+    },
+
+    {
+      "name": "base-linux-gcc",
+      "hidden": true,
+      "inherits": "base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "toolchainFile": "${sourceDir}/cmake/toolchains/linux-gcc.cmake"
+    },
+
+    {
+      "name": "debug",
+      "inherits": "base-debug"
+    },
+
+    {
+      "name": "release",
+      "inherits": "base-release"
+    },
+
+    {
+      "name": "debug-macos-llvm",
+      "inherits": ["base-macos-llvm", "base-debug"]
+    },
+
+    {
+      "name": "release-macos-llvm",
+      "inherits": ["base-macos-llvm", "base-release"]
+    },
+
+    {
+      "name": "debug-linux-gcc",
+      "inherits": ["base-linux-gcc", "base-debug"]
+    },
+
+    {
+      "name": "release-linux-gcc",
+      "inherits": ["base-linux-gcc", "base-release"]
+    },
+
+    {
+      "name": "clang-tidy-macos-llvm",
+      "inherits": ["base-macos-llvm", "base-debug", "base-clang-tidy"]
+    },
+
+    {
+      "name": "clang-tidy-linux-gcc",
+      "inherits": ["base-linux-gcc", "base-debug", "base-clang-tidy"]
     },
 
     {
@@ -51,10 +121,7 @@
 
     {
       "name": "clang-tidy",
-      "inherits": "debug",
-      "cacheVariables": {
-        "CP_ENABLE_CLANG_TIDY": "ON"
-      }
+      "inherits": ["base-debug", "base-clang-tidy"]
     },
 
     {
@@ -70,6 +137,30 @@
     {
       "name": "debug",
       "configurePreset": "debug"
+    },
+    {
+      "name": "debug-macos-llvm",
+      "configurePreset": "debug-macos-llvm"
+    },
+    {
+      "name": "release-macos-llvm",
+      "configurePreset": "release-macos-llvm"
+    },
+    {
+      "name": "debug-linux-gcc",
+      "configurePreset": "debug-linux-gcc"
+    },
+    {
+      "name": "release-linux-gcc",
+      "configurePreset": "release-linux-gcc"
+    },
+    {
+      "name": "clang-tidy-macos-llvm",
+      "configurePreset": "clang-tidy-macos-llvm"
+    },
+    {
+      "name": "clang-tidy-linux-gcc",
+      "configurePreset": "clang-tidy-linux-gcc"
     },
     {
       "name": "release",
