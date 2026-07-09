@@ -4,6 +4,8 @@ set(CSES_PROBLEMS
     bit_strings
     chessboard_and_queens
     coin_piles
+    collecting_numbers
+    collecting_numbers_ii
     creating_strings
     digit_queries
     distinct_numbers
