@@ -14,7 +14,7 @@
     },
 
     {
-      "name": "base-debug",
+      "name": "debug-config",
       "hidden": true,
       "inherits": "base",
       "cacheVariables": {
@@ -23,7 +23,7 @@
     },
 
     {
-      "name": "base-release",
+      "name": "release-config",
       "hidden": true,
       "inherits": "base",
       "cacheVariables": {
@@ -32,7 +32,15 @@
     },
 
     {
-      "name": "base-clang-tidy",
+      "name": "testing",
+      "hidden": true,
+      "cacheVariables": {
+        "CP_ENABLE_TESTING": "ON"
+      }
+    },
+
+    {
+      "name": "tidy-config",
       "hidden": true,
       "cacheVariables": {
         "CP_ENABLE_CLANG_TIDY": "ON"
@@ -40,112 +48,90 @@
     },
 
     {
-      "name": "base-googletest",
+      "name": "asan-config",
       "hidden": true,
-      "cacheVariables": {
-        "CP_ENABLE_GOOGLETEST": "ON"
-      }
-    },
-
-    {
-      "name": "base-macos-llvm",
-      "hidden": true,
-      "inherits": "base",
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Darwin"
-      },
-      "toolchainFile": "${sourceDir}/cmake/toolchains/macos-llvm.cmake"
-    },
-
-    {
-      "name": "base-linux-gcc",
-      "hidden": true,
-      "inherits": "base",
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Linux"
-      },
-      "toolchainFile": "${sourceDir}/cmake/toolchains/linux-gcc.cmake"
-    },
-
-    {
-      "name": "release-macos-llvm",
-      "inherits": ["base-macos-llvm", "base-release"]
-    },
-
-    {
-      "name": "release-linux-gcc",
-      "inherits": ["base-linux-gcc", "base-release"]
-    },
-
-    {
-      "name": "clang-tidy",
-      "inherits": ["base-debug", "base-clang-tidy"]
-    },
-
-    {
-      "name": "debug-googletest",
-      "inherits": ["base-debug", "base-googletest"]
-    },
-
-    {
-      "name": "asan-googletest",
-      "inherits": "debug-googletest",
       "cacheVariables": {
         "CP_ENABLE_SANITIZERS": "ON"
       }
     },
 
     {
-      "name": "tsan",
-      "inherits": "base-debug",
+      "name": "tsan-config",
+      "hidden": true,
       "cacheVariables": {
         "CP_ENABLE_THREAD_SANITIZER": "ON"
       }
+    },
+
+    {
+      "name": "debug",
+      "inherits": "debug-config"
+    },
+
+    {
+      "name": "release",
+      "inherits": "release-config"
+    },
+
+    {
+      "name": "test",
+      "inherits": ["debug-config", "testing"]
+    },
+
+    {
+      "name": "asan",
+      "inherits": ["debug-config", "testing", "asan-config"]
+    },
+
+    {
+      "name": "tsan",
+      "inherits": ["debug-config", "tsan-config"]
+    },
+
+    {
+      "name": "tidy",
+      "inherits": ["debug-config", "tidy-config"]
     }
   ],
 
   "buildPresets": [
     {
-      "name": "release-macos-llvm",
-      "configurePreset": "release-macos-llvm"
+      "name": "debug",
+      "configurePreset": "debug"
     },
     {
-      "name": "release-linux-gcc",
-      "configurePreset": "release-linux-gcc"
+      "name": "release",
+      "configurePreset": "release"
     },
     {
-      "name": "asan-googletest",
-      "configurePreset": "asan-googletest"
+      "name": "test",
+      "configurePreset": "test"
+    },
+    {
+      "name": "asan",
+      "configurePreset": "asan"
     },
     {
       "name": "tsan",
       "configurePreset": "tsan"
     },
     {
-      "name": "clang-tidy",
-      "configurePreset": "clang-tidy"
-    },
-    {
-      "name": "debug-googletest",
-      "configurePreset": "debug-googletest"
+      "name": "tidy",
+      "configurePreset": "tidy"
     }
   ],
 
   "testPresets": [
     {
-      "name": "asan-googletest",
-      "configurePreset": "asan-googletest",
+      "name": "test",
+      "configurePreset": "test",
       "output": {
         "outputOnFailure": true
       }
     },
     {
-      "name": "debug-googletest",
-      "configurePreset": "debug-googletest",
+      "name": "asan",
+      "configurePreset": "asan",
       "output": {
         "outputOnFailure": true
       }

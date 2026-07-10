@@ -1,3 +1,3 @@
-option(CP_ENABLE_GOOGLETEST "Enable GoogleTest unit tests" OFF)
+option(CP_ENABLE_TESTING "Enable unit tests" OFF)
 
 include(CTest)

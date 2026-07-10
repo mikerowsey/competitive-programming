@@ -15,7 +15,7 @@ Runs the standard local pre-push checks in one command:
   4) clang-tidy check
 
 Options:
-  --preset <name>     Configure/build preset to use (default: debug-googletest)
+  --preset <name>     Configure/build preset to use (default: test)
   --all-tidy          Run clang-tidy on all files instead of changed-only
   --skip-tests        Skip test execution
   --skip-format       Skip formatting check
@@ -24,7 +24,7 @@ Options:
 EOF
 }
 
-preset="debug-googletest"
+preset="test"
 run_tests=1
 run_format=1
 run_tidy=1

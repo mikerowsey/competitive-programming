@@ -65,7 +65,7 @@ foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
     )
 endforeach()
 
-if(BUILD_TESTING AND CP_ENABLE_GOOGLETEST)
+if(BUILD_TESTING AND CP_ENABLE_TESTING)
     include(FetchContent)
 
     FetchContent_Declare(

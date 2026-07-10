@@ -71,12 +71,12 @@ done
 
 if ! command -v clang-tidy >/dev/null 2>&1; then
   echo "Error: clang-tidy not found in PATH" >&2
-  echo "Install LLVM/clang toolchain and ensure clang-tidy is available in PATH" >&2
+  echo "Install LLVM/clang and ensure clang-tidy is available in PATH" >&2
   exit 1
 fi
 
 if [[ ! -d "$build_dir" ]]; then
-  echo "Error: Missing $build_dir. Run a configure preset first (for example: cmake --preset debug-googletest)." >&2
+  echo "Error: Missing $build_dir. Run a configure preset first (for example: cmake --preset tidy)." >&2
   exit 1
 fi
 

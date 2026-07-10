@@ -47,8 +47,8 @@ Each problem directory is an independent executable target.
 
 ### Test
 
-- gtest test targets are generated as `<problem_slug>_gtest` when a wrapper exists.
-- CTest test name format is generated through `gtest_discover_tests` with prefix `gtest.cses.<problem_slug>.`.
+- Per-problem test targets are generated when a test wrapper exists.
+- CTest test discovery registers tests with the current `gtest.cses.<problem_slug>.` prefix.
 - Shared assertions and semantic validators live in `tests/gtest_case_utils.hpp`.
 
 ## Problem Ownership Rules
@@ -59,7 +59,7 @@ Each problem folder owns:
 
 Each problem test folder owns:
 
-- gtest wrapper (`tests/<problem_slug>/<problem_slug>_gtest.cpp`)
+- test wrapper (`tests/<problem_slug>/<problem_slug>_gtest.cpp`)
 - local fixtures (`tests/<problem_slug>/gtest_cases/*`)
 
 This keeps problem context local and reduces cross-file coupling.
@@ -90,15 +90,15 @@ Solution headers follow this order:
 
 - One executable per problem avoids hidden coupling.
 - Explicit registration keeps build target changes intentional and reviewable.
-- gtest + CTest discovery gives immediate correctness feedback.
+- Test framework + CTest discovery gives immediate correctness feedback.
 - Shared semantic validators prevent false failures on multi-answer problems.
 - Scripted scaffolding keeps conventions consistent with low friction.
 
 ## CI and Quality Gates
 
-- GitHub Actions validates debug-googletest configure/build/test on Ubuntu and macOS.
+- GitHub Actions validates test configure/build/test on Ubuntu and macOS.
 - Formatting gate runs via `scripts/check_format.sh`.
-- ASan/UBSan + googletest job runs on Linux for undefined behavior and memory bugs.
+- ASan/UBSan + test job runs on Linux for undefined behavior and memory bugs.
 
 ## Near-Term Improvements
 
