@@ -76,7 +76,7 @@ if ! command -v clang-tidy >/dev/null 2>&1; then
 fi
 
 if [[ ! -d "$build_dir" ]]; then
-  echo "Error: Missing $build_dir. Run: cmake --preset debug" >&2
+  echo "Error: Missing $build_dir. Run a configure preset first (for example: cmake --preset debug-googletest)." >&2
   exit 1
 fi
 

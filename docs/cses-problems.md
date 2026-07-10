@@ -37,4 +37,3 @@ This index tracks solved problems, their primary technique, and local test mode.
 
 - `exact` tests compare normalized output against fixtures.
 - `semantic` tests validate correctness properties for multi-answer tasks.
-- Perf smoke tests run only when `CP_ENABLE_PERF_TESTS=ON` (e.g. `cmake --preset perf`).

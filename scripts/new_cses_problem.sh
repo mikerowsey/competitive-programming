@@ -1,40 +1,45 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ $# -lt 2 || $# -gt 3 ]]; then
-  echo "Usage: $0 <slug> <problem-title> [exact|semantic]" >&2
-  echo "Example: $0 raab_game_i 'Raab Game I' semantic" >&2
+if [[ $# -ne 2 ]]; then
+  echo "Usage: $0 <slug> <problem-title>" >&2
+  echo "Example: $0 raab_game_i 'Raab Game I'" >&2
   exit 1
 fi
 
 slug="$1"
 problem_title="$2"
-test_kind="${3:-exact}"
 
 if [[ ! "$slug" =~ ^[a-z0-9_]+$ ]]; then
   echo "Slug must use lowercase letters, numbers, and underscores." >&2
   exit 1
 fi
 
-if [[ "$test_kind" != "exact" && "$test_kind" != "semantic" ]]; then
-  echo "Third argument must be 'exact' or 'semantic'." >&2
-  exit 1
-fi
-
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 problem_dir="$repo_root/src/cses/$slug"
+tests_dir="$repo_root/src/cses/tests/$slug"
+gtest_cases_dir="$tests_dir/gtest_cases"
 cmake_registry_file="$repo_root/src/cses/CMakeLists.txt"
 source_file="$problem_dir/$slug.cpp"
+gtest_file="$tests_dir/${slug}_gtest.cpp"
 
-if [[ -e "$problem_dir" ]]; then
-  echo "Problem directory already exists: $problem_dir" >&2
+if [[ -e "$problem_dir" || -e "$tests_dir" ]]; then
+  echo "Problem or test directory already exists for slug: $slug" >&2
   exit 1
 fi
 
-mkdir -p "$problem_dir"
+mkdir -p "$problem_dir" "$gtest_cases_dir"
 
 cat > "$source_file" <<EOF2
 // Problem: ${problem_title}
+//
+// Pattern: TODO
+// Technique: TODO
+//
+// Time: TODO
+// Space: TODO
+//
+// Insight: TODO
 
 #include <iostream>
 
@@ -44,16 +49,41 @@ void solve(std::istream& in, std::ostream& out)
     (void)out;
 }
 
+#ifndef CP_DISABLE_MAIN
 int main()
 {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     solve(std::cin, std::cout);
 }
+#endif
 EOF2
 
-: > "$problem_dir/test_input.txt"
-: > "$problem_dir/test_output.txt"
+cat > "$gtest_file" <<EOF2
+#include <gtest/gtest.h>
+
+#include "../gtest_case_utils.hpp"
+
+void solve(std::istream& in, std::ostream& out);
+
+TEST(${slug}_test, case_00)
+{
+    cses::gtest_case_utils::expect_case_matches(
+        solve,
+        cses::gtest_case_utils::repo_path(
+            "src/cses/tests/${slug}/gtest_cases/case_00_input.txt"),
+        cses::gtest_case_utils::repo_path(
+            "src/cses/tests/${slug}/gtest_cases/case_00_output.txt"));
+}
+EOF2
+
+cat > "$gtest_cases_dir/case_00_input.txt" <<'EOF2'
+
+EOF2
+
+cat > "$gtest_cases_dir/case_00_output.txt" <<'EOF2'
+
+EOF2
 
 cat > "$problem_dir/notes.md" <<EOF2
 # Problem: ${problem_title}
@@ -89,41 +119,6 @@ Add the key invariant or proof sketch here.
 - Repeated values / ties (if applicable).
 - Overflow boundaries (if applicable).
 EOF2
-
-if [[ "$test_kind" == "semantic" ]]; then
-  validator_name="validate_${slug}.cmake"
-  validator_path="$repo_root/cmake/$validator_name"
-
-  cat > "$problem_dir/test.config.cmake" <<'EOF2'
-# Per-problem test metadata for CMake registration.
-set(CP_TEST_KIND "semantic")
-set(CP_TEST_TIMEOUT_SECONDS 5)
-set(CP_TEST_VALIDATOR "${PROJECT_SOURCE_DIR}/cmake/__VALIDATOR_NAME__")
-EOF2
-
-  sed -i.bak "s|__VALIDATOR_NAME__|$validator_name|" "$problem_dir/test.config.cmake" && rm -f "$problem_dir/test.config.cmake.bak"
-
-  cat > "$validator_path" <<'EOF2'
-foreach(VAR INPUT OUTPUT)
-    if(NOT DEFINED ${VAR})
-        message(FATAL_ERROR "${VAR} not specified")
-    endif()
-endforeach()
-
-message(FATAL_ERROR "Replace this validator with semantic checks that inspect INPUT and OUTPUT.")
-EOF2
-else
-  cat > "$problem_dir/test.config.cmake" <<'EOF2'
-# Per-problem test metadata for CMake registration.
-set(CP_TEST_KIND "exact")
-set(CP_TEST_TIMEOUT_SECONDS 2)
-
-# Optional perf smoke test (enabled with CP_ENABLE_PERF_TESTS).
-# set(CP_PERF_ENABLED ON)
-# set(CP_PERF_MAX_MS 200)
-# set(CP_PERF_RUNS 5)
-EOF2
-fi
 
 python3 - "$cmake_registry_file" "$slug" <<'PY'
 from pathlib import Path
@@ -163,9 +158,9 @@ cmake_path.write_text('\n'.join(new_lines) + '\n', encoding='utf-8')
 PY
 
 echo "Created: $problem_dir"
+echo "Created: $tests_dir"
 echo "Updated explicit registry: $cmake_registry_file"
 echo "Next:"
-echo "  1) Fill in ${slug}.cpp algorithm/header fields"
-echo "  2) Add sample test_input.txt and test_output.txt"
-echo "  3) Update notes.md while solving"
-echo "  4) Run: cmake --preset debug && ctest --test-dir build/debug -R '^cses\\.${slug}$' --output-on-failure"
+echo "  1) Fill in ${slug}.cpp algorithm and notes"
+echo "  2) Add fixture content in src/cses/tests/${slug}/gtest_cases"
+echo "  3) Run: cmake --preset debug-googletest && ctest --preset debug-googletest -R '^gtest\\.cses\\.${slug}\\.' --output-on-failure"

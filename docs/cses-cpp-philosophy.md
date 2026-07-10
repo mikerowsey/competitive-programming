@@ -49,7 +49,6 @@ Keep each problem source file minimal: the top comment should only identify the 
 - [ ] Names are descriptive and code reads top-down.
 - [ ] No unnecessary abstractions.
 - [ ] Passes local fixture-based tests.
-- [ ] Passes optional perf smoke budget when enabled.
 
 ## Review Order
 

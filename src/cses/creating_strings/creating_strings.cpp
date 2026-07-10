@@ -44,9 +44,11 @@ void solve(std::istream& in, std::ostream& out)
     } while (std::next_permutation(letters.begin(), letters.end()));
 }
 
+#ifndef CP_DISABLE_MAIN
 int main()
 {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     solve(std::cin, std::cout);
 }
+#endif

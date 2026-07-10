@@ -26,9 +26,13 @@ competitive-programming/
     cses/
       <problem_slug>/
         <problem_slug>.cpp
-        test_input.txt
-        test_output.txt
-        test.config.cmake (optional)
+      tests/
+        gtest_case_utils.hpp
+        <problem_slug>/
+          <problem_slug>_gtest.cpp
+          gtest_cases/
+            case_00_input.txt
+            case_00_output.txt
 ```
 
 Each problem directory is an independent executable target.
@@ -43,27 +47,20 @@ Each problem directory is an independent executable target.
 
 ### Test
 
-- CTest test name format: `cses.<problem_slug>`.
-- Two test kinds are supported via per-problem metadata:
-  - `exact`: compare output to fixture with normalized line endings/whitespace
-  - `semantic`: run a validator script for multi-answer tasks
-
-Per-problem metadata file (`test.config.cmake`) can define:
-
-- `CP_TEST_KIND`
-- `CP_TEST_TIMEOUT_SECONDS`
-- `CP_TEST_VALIDATOR`
-- `CP_PERF_ENABLED`
-- `CP_PERF_MAX_MS`
-- `CP_PERF_RUNS`
+- gtest test targets are generated as `<problem_slug>_gtest` when a wrapper exists.
+- CTest test name format is generated through `gtest_discover_tests` with prefix `gtest.cses.<problem_slug>.`.
+- Shared assertions and semantic validators live in `src/cses/tests/gtest_case_utils.hpp`.
 
 ## Problem Ownership Rules
 
 Each problem folder owns:
 
 - implementation (`<problem_slug>.cpp`)
-- local fixtures (`test_input.txt`, `test_output.txt`)
-- optional test metadata (`test.config.cmake`)
+
+Each problem test folder owns:
+
+- gtest wrapper (`src/cses/tests/<problem_slug>/<problem_slug>_gtest.cpp`)
+- local fixtures (`src/cses/tests/<problem_slug>/gtest_cases/*`)
 
 This keeps problem context local and reduces cross-file coupling.
 
@@ -93,16 +90,15 @@ Solution headers follow this order:
 
 - One executable per problem avoids hidden coupling.
 - Explicit registration keeps build target changes intentional and reviewable.
-- CTest wiring gives immediate correctness feedback.
-- Semantic validators prevent false failures on multi-answer problems.
+- gtest + CTest discovery gives immediate correctness feedback.
+- Shared semantic validators prevent false failures on multi-answer problems.
 - Scripted scaffolding keeps conventions consistent with low friction.
 
 ## CI and Quality Gates
 
-- GitHub Actions validates debug configure/build/test on Ubuntu and macOS.
+- GitHub Actions validates debug-googletest configure/build/test on Ubuntu and macOS.
 - Formatting gate runs via `scripts/check_format.sh`.
-- ASan/UBSan job runs on Linux for undefined behavior and memory bugs.
-- Perf smoke tests run from the `perf` preset on schedule/manual trigger.
+- ASan/UBSan + googletest job runs on Linux for undefined behavior and memory bugs.
 
 ## Near-Term Improvements
 

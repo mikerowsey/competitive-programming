@@ -17,13 +17,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure (Debug)
-        run: cmake --preset debug
+        run: cmake --preset debug-googletest
 
       - name: Build (Debug)
-        run: cmake --build --preset debug
+        run: cmake --build --preset debug-googletest
 
       - name: Test (Debug)
-        run: ctest --preset debug
+        run: ctest --preset debug-googletest
 
   build-and-test-macos-weekly:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -34,13 +34,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure (Debug)
-        run: cmake --preset debug
+        run: cmake --preset debug-googletest
 
       - name: Build (Debug)
-        run: cmake --build --preset debug
+        run: cmake --build --preset debug-googletest
 
       - name: Test (Debug)
-        run: ctest --preset debug
+        run: ctest --preset debug-googletest
 
   format:
     runs-on: ubuntu-latest
@@ -68,8 +68,8 @@ jobs:
       - name: Install clang-tidy
         run: sudo apt-get update && sudo apt-get install -y clang-tidy
 
-      - name: Configure (clang-tidy Linux GCC)
-        run: cmake --preset clang-tidy-linux-gcc
+      - name: Configure (clang-tidy)
+        run: cmake --preset clang-tidy
 
       - name: Run clang-tidy checks (changed files)
         run: |
@@ -85,7 +85,7 @@ jobs:
             --changed-only \
             --base "$BASE_SHA" \
             --head "$HEAD_SHA" \
-            --build-dir build/clang-tidy-linux-gcc \
+            --build-dir build/clang-tidy \
             --fail-on-warnings
 
   asan:
@@ -95,29 +95,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure (ASan/UBSan)
-        run: cmake --preset asan
+        run: cmake --preset asan-googletest
 
       - name: Build (ASan/UBSan)
-        run: cmake --build --preset asan
+        run: cmake --build --preset asan-googletest
 
       - name: Test (ASan/UBSan)
-        run: ctest --preset asan
-
-  perf-smoke:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure (Perf)
-        run: cmake --preset perf
-
-      - name: Build (Perf)
-        run: cmake --build --preset perf
-
-      - name: Test (Perf label)
-        run: ctest --preset perf
+        run: ctest --preset asan-googletest
 
   clang-tidy-weekly-report:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -129,15 +113,15 @@ jobs:
       - name: Install clang-tidy
         run: sudo apt-get update && sudo apt-get install -y clang-tidy
 
-      - name: Configure (clang-tidy Linux GCC)
-        run: cmake --preset clang-tidy-linux-gcc
+      - name: Configure (clang-tidy)
+        run: cmake --preset clang-tidy
 
       - name: Generate clang-tidy reports
-        run: ./scripts/run_clang_tidy_reports.sh --all --build-dir build/clang-tidy-linux-gcc --report-file build/clang-tidy-linux-gcc/clang-tidy-report.txt
+        run: ./scripts/run_clang_tidy_reports.sh --all --build-dir build/clang-tidy --report-file build/clang-tidy/clang-tidy-report.txt
 
       - name: Upload reports as artifacts
         uses: actions/upload-artifact@v4
         with:
           name: clang-tidy-reports
-          path: build/clang-tidy-linux-gcc/clang-tidy-report.txt
+          path: build/clang-tidy/clang-tidy-report.txt
           retention-days: 30

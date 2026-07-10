@@ -50,6 +50,7 @@ void solve(std::istream& in, std::ostream& out)
     print_set(out, second_set);
 }
 
+#ifndef CP_DISABLE_MAIN
 int main()
 {
     std::ios::sync_with_stdio(false);
@@ -57,3 +58,4 @@ int main()
 
     solve(std::cin, std::cout);
 }
+#endif

@@ -49,6 +49,7 @@ void solve(std::istream& in, std::ostream& out)
     out << search_placements(board, columns, left_diagonals, right_diagonals, 0) << '\n';
 }
 
+#ifndef CP_DISABLE_MAIN
 int main()
 {
     std::ios::sync_with_stdio(false);
@@ -56,3 +57,4 @@ int main()
 
     solve(std::cin, std::cout);
 }
+#endif

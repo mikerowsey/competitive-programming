@@ -40,9 +40,6 @@ foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
     set(PROBLEM_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${PROBLEM_NAME}")
     set(WIP_MARKER_FILE "${PROBLEM_DIR}/.wip")
     set(MAIN_FILE "${PROBLEM_DIR}/${PROBLEM_NAME}.cpp")
-    set(TEST_INPUT_FILE "${PROBLEM_DIR}/test_input.txt")
-    set(TEST_OUTPUT_FILE "${PROBLEM_DIR}/test_output.txt")
-    set(TEST_CONFIG_FILE "${PROBLEM_DIR}/test.config.cmake")
 
     if(EXISTS "${WIP_MARKER_FILE}")
         message(STATUS "Skipping ${PROBLEM_NAME}: marked as WIP (.wip)")
@@ -66,97 +63,6 @@ foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
             cp_project_warnings
             cp_sanitizers
     )
-
-    # Defaults for per-problem test metadata.
-    set(CP_TEST_KIND "exact")
-    set(CP_TEST_VALIDATOR "")
-    set(CP_TEST_TIMEOUT_SECONDS 2)
-
-    # Optional performance smoke settings.
-    set(CP_PERF_ENABLED OFF)
-    set(CP_PERF_INPUT "")
-    set(CP_PERF_MAX_MS 0)
-    set(CP_PERF_RUNS 3)
-
-    if(EXISTS "${TEST_CONFIG_FILE}")
-        include("${TEST_CONFIG_FILE}")
-    endif()
-
-    if(CP_TEST_KIND STREQUAL "exact")
-        if(EXISTS "${TEST_INPUT_FILE}" AND EXISTS "${TEST_OUTPUT_FILE}")
-            add_test(
-                NAME cses.${PROBLEM_NAME}
-                COMMAND
-                    ${CMAKE_COMMAND}
-                    -DPROGRAM=$<TARGET_FILE:${PROBLEM_NAME}>
-                    -DINPUT=${TEST_INPUT_FILE}
-                    -DEXPECTED=${TEST_OUTPUT_FILE}
-                    -DTIMEOUT_SECONDS=${CP_TEST_TIMEOUT_SECONDS}
-                    -P ${PROJECT_SOURCE_DIR}/cmake/run_test.cmake
-            )
-        else()
-            message(STATUS "Skipping test cses.${PROBLEM_NAME}: missing test_input.txt or test_output.txt")
-        endif()
-    elseif(CP_TEST_KIND STREQUAL "semantic")
-        if(NOT EXISTS "${TEST_INPUT_FILE}")
-            message(STATUS "Skipping test cses.${PROBLEM_NAME}: missing test_input.txt")
-        elseif(CP_TEST_VALIDATOR STREQUAL "")
-            message(STATUS "Skipping test cses.${PROBLEM_NAME}: CP_TEST_VALIDATOR is not set")
-        elseif(NOT EXISTS "${CP_TEST_VALIDATOR}")
-            message(STATUS "Skipping test cses.${PROBLEM_NAME}: validator not found: ${CP_TEST_VALIDATOR}")
-        else()
-            add_test(
-                NAME cses.${PROBLEM_NAME}
-                COMMAND
-                    ${CMAKE_COMMAND}
-                    -DTEST_NAME=cses.${PROBLEM_NAME}
-                    -DPROGRAM=$<TARGET_FILE:${PROBLEM_NAME}>
-                    -DINPUT=${TEST_INPUT_FILE}
-                    -DVALIDATOR=${CP_TEST_VALIDATOR}
-                    -DTIMEOUT_SECONDS=${CP_TEST_TIMEOUT_SECONDS}
-                    -P ${PROJECT_SOURCE_DIR}/cmake/run_semantic_test.cmake
-            )
-        endif()
-    else()
-        message(STATUS "Skipping test cses.${PROBLEM_NAME}: unknown CP_TEST_KIND='${CP_TEST_KIND}'")
-    endif()
-
-    if(TEST cses.${PROBLEM_NAME})
-        set_tests_properties(
-            cses.${PROBLEM_NAME}
-            PROPERTIES
-                LABELS "cses;${PROBLEM_NAME}"
-        )
-    endif()
-
-    if(CP_ENABLE_PERF_TESTS AND CP_PERF_ENABLED)
-        if(CP_PERF_INPUT STREQUAL "")
-            set(CP_PERF_INPUT "${TEST_INPUT_FILE}")
-        endif()
-
-        if(NOT EXISTS "${CP_PERF_INPUT}")
-            message(STATUS "Skipping perf test perf.cses.${PROBLEM_NAME}: missing input '${CP_PERF_INPUT}'")
-        elseif(CP_PERF_MAX_MS LESS_EQUAL 0)
-            message(STATUS "Skipping perf test perf.cses.${PROBLEM_NAME}: CP_PERF_MAX_MS must be > 0")
-        else()
-            add_test(
-                NAME perf.cses.${PROBLEM_NAME}
-                COMMAND
-                    ${CMAKE_COMMAND}
-                    -DPROGRAM=$<TARGET_FILE:${PROBLEM_NAME}>
-                    -DINPUT=${CP_PERF_INPUT}
-                    -DMAX_MS=${CP_PERF_MAX_MS}
-                    -DRUNS=${CP_PERF_RUNS}
-                    -P ${PROJECT_SOURCE_DIR}/cmake/run_perf_smoke.cmake
-            )
-
-            set_tests_properties(
-                perf.cses.${PROBLEM_NAME}
-                PROPERTIES
-                    LABELS "cses;perf;${PROBLEM_NAME}"
-            )
-        endif()
-    endif()
 endforeach()
 
 if(BUILD_TESTING AND CP_ENABLE_GOOGLETEST)
@@ -168,58 +74,43 @@ if(BUILD_TESTING AND CP_ENABLE_GOOGLETEST)
     )
     FetchContent_MakeAvailable(googletest)
 
-    add_executable(
-        collecting_numbers_gtest
-        collecting_numbers/collecting_numbers.cpp
-        collecting_numbers/collecting_numbers_gtest.cpp
-    )
-
-    target_compile_definitions(
-        collecting_numbers_gtest
-        PRIVATE
-            CP_DISABLE_MAIN
-            CP_REPO_ROOT="${PROJECT_SOURCE_DIR}"
-    )
-
-    target_link_libraries(
-        collecting_numbers_gtest
-        PRIVATE
-            cp_project_options
-            cp_project_warnings
-            cp_sanitizers
-            GTest::gtest_main
-    )
-
     include(GoogleTest)
-    gtest_discover_tests(
-        collecting_numbers_gtest
-        TEST_PREFIX gtest.cses.collecting_numbers.
-    )
 
-    add_executable(
-        collecting_numbers_ii_gtest
-        collecting_numbers_ii/collecting_numbers_ii.cpp
-        collecting_numbers_ii/collecting_numbers_ii_gtest.cpp
-    )
+    foreach(PROBLEM_NAME IN LISTS CSES_PROBLEMS)
+        set(PROBLEM_MAIN_CPP "${CMAKE_CURRENT_SOURCE_DIR}/${PROBLEM_NAME}/${PROBLEM_NAME}.cpp")
+        set(PROBLEM_GTEST_CPP "${CMAKE_CURRENT_SOURCE_DIR}/tests/${PROBLEM_NAME}/${PROBLEM_NAME}_gtest.cpp")
 
-    target_compile_definitions(
-        collecting_numbers_ii_gtest
-        PRIVATE
-            CP_DISABLE_MAIN
-            CP_REPO_ROOT="${PROJECT_SOURCE_DIR}"
-    )
+        if(NOT EXISTS "${PROBLEM_MAIN_CPP}" OR NOT EXISTS "${PROBLEM_GTEST_CPP}")
+            continue()
+        endif()
 
-    target_link_libraries(
-        collecting_numbers_ii_gtest
-        PRIVATE
-            cp_project_options
-            cp_project_warnings
-            cp_sanitizers
-            GTest::gtest_main
-    )
+        set(PROBLEM_GTEST_TARGET "${PROBLEM_NAME}_gtest")
 
-    gtest_discover_tests(
-        collecting_numbers_ii_gtest
-        TEST_PREFIX gtest.cses.collecting_numbers_ii.
-    )
+        add_executable(
+            ${PROBLEM_GTEST_TARGET}
+            "${PROBLEM_MAIN_CPP}"
+            "${PROBLEM_GTEST_CPP}"
+        )
+
+        target_compile_definitions(
+            ${PROBLEM_GTEST_TARGET}
+            PRIVATE
+                CP_DISABLE_MAIN
+                CP_REPO_ROOT="${PROJECT_SOURCE_DIR}"
+        )
+
+        target_link_libraries(
+            ${PROBLEM_GTEST_TARGET}
+            PRIVATE
+                cp_project_options
+                cp_project_warnings
+                cp_sanitizers
+                GTest::gtest_main
+        )
+
+        gtest_discover_tests(
+            ${PROBLEM_GTEST_TARGET}
+            TEST_PREFIX gtest.cses.${PROBLEM_NAME}.
+        )
+    endforeach()
 endif()

@@ -26,9 +26,11 @@ void solve(std::istream& in, std::ostream& out)
     out << result << '\n';
 }
 
+#ifndef CP_DISABLE_MAIN
 int main()
 {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     solve(std::cin, std::cout);
 }
+#endif

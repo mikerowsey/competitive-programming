@@ -17,10 +17,7 @@ The objective is to produce solutions and infrastructure that hold up under a pr
 ## What This Repo Is
 
 - A multi-target C++ project where each problem is its own executable.
-- A test-driven workflow using per-problem input/output fixtures.
-- A metadata-driven CTest setup that supports both:
-  - exact-output validation
-  - semantic validation for multi-answer problems
+- A gtest-driven workflow using per-problem fixture files under `src/cses/tests/<problem>/gtest_cases`.
 
 ## Milestone Status
 
@@ -38,25 +35,25 @@ Daily one-command check (recommended before push):
 1. Configure:
 
 ```bash
-cmake --preset debug
+cmake --preset debug-googletest
 ```
 
 1. Build:
 
 ```bash
-cmake --build --preset debug
+cmake --build --preset debug-googletest
 ```
 
 1. Run all tests:
 
 ```bash
-ctest --test-dir build/debug --output-on-failure
+ctest --preset debug-googletest --output-on-failure
 ```
 
 1. Run one problem test:
 
 ```bash
-ctest --test-dir build/debug -R '^cses\.weird_algorithm$' --output-on-failure
+ctest --preset debug-googletest -R '^gtest\.cses\.weird_algorithm\.' --output-on-failure
 ```
 
 1. Run formatting gate:
@@ -65,25 +62,17 @@ ctest --test-dir build/debug -R '^cses\.weird_algorithm$' --output-on-failure
 ./scripts/check_format.sh
 ```
 
-1. Run performance smoke tests (selected problems):
-
-```bash
-cmake --preset perf
-cmake --build --preset perf
-ctest --preset perf
-```
-
 1. Run clang-tidy on changed files:
 
 ```bash
-cmake --preset debug
+cmake --preset debug-googletest
 ./scripts/run_clang_tidy_reports.sh --changed-only --fail-on-warnings
 ```
 
 `dev_check.sh` options:
 
 ```bash
-./scripts/dev_check.sh --preset debug-macos-llvm
+./scripts/dev_check.sh --preset debug-googletest
 ./scripts/dev_check.sh --skip-tidy
 ./scripts/dev_check.sh --all-tidy
 ```
@@ -99,7 +88,7 @@ cmake --preset debug
 Use the helper to create a new CSES problem folder and files:
 
 ```bash
-./scripts/new_cses_problem.sh <slug> "Problem Title" [exact|semantic]
+./scripts/new_cses_problem.sh <slug> "Problem Title"
 ```
 
 The scaffolder now also updates the explicit problem registry in `src/cses/CMakeLists.txt`.
@@ -108,46 +97,23 @@ The scaffolder now also updates the explicit problem registry in `src/cses/CMake
 
 GitHub Actions runs:
 
-- debug configure/build/test on Ubuntu (push/PR)
-- debug configure/build/test on macOS (weekly/manual)
+- debug-googletest configure/build/test on Ubuntu (push/PR)
+- debug-googletest configure/build/test on macOS (weekly/manual)
 - clang-format gate
 - clang-tidy on changed files for push/PR
-- ASan/UBSan test pass
-- scheduled/manual perf smoke run
+- ASan/UBSan + googletest test pass
 - scheduled/manual full-repo clang-tidy report
 
 ## Advanced Presets (Optional)
 
-Daily local usage does not require platform presets. Use these only for compiler parity with CI/toolchains or when troubleshooting platform/compiler-specific behavior.
-
-macOS + Homebrew LLVM:
+Daily local usage does not require platform-specific release presets. Use these only for compiler/toolchain parity when needed.
 
 ```bash
-cmake --preset debug-macos-llvm
-cmake --build --preset debug-macos-llvm
-
 cmake --preset release-macos-llvm
 cmake --build --preset release-macos-llvm
-```
-
-Linux + GCC:
-
-```bash
-cmake --preset debug-linux-gcc
-cmake --build --preset debug-linux-gcc
 
 cmake --preset release-linux-gcc
 cmake --build --preset release-linux-gcc
-```
-
-Clang-tidy platform variants:
-
-```bash
-cmake --preset clang-tidy-macos-llvm
-cmake --build --preset clang-tidy-macos-llvm
-
-cmake --preset clang-tidy-linux-gcc
-cmake --build --preset clang-tidy-linux-gcc
 ```
 
 ## Clang-Tidy Setup
@@ -178,15 +144,8 @@ export SDKROOT=$(xcrun --show-sdk-path)
 1. Run clang-tidy for changed files (default local loop):
 
 ```bash
-cmake --preset debug
+cmake --preset debug-googletest
 ./scripts/run_clang_tidy_reports.sh --changed-only --fail-on-warnings
-```
-
-Linux VM (preset-specific path):
-
-```bash
-cmake --preset clang-tidy-linux-gcc
-./scripts/run_clang_tidy_reports.sh --changed-only --build-dir build/clang-tidy-linux-gcc --fail-on-warnings
 ```
 
 1. Generate full-repo clang-tidy report manually:
@@ -196,4 +155,4 @@ cmake --preset clang-tidy
 ./scripts/run_clang_tidy_reports.sh --all --build-dir build/clang-tidy
 ```
 
-Linux CI full report path: `build/clang-tidy-linux-gcc/clang-tidy-report.txt`.
+CI full report path: `build/clang-tidy/clang-tidy-report.txt`.
