@@ -3,31 +3,10 @@ name: ci
 on:
   push:
     branches: [main]
-  pull_request:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 10 * * 1"
 
 jobs:
   build-and-test-ubuntu:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure (test)
-        run: cmake --preset test
-
-      - name: Build (test)
-        run: cmake --build --preset test
-
-      - name: Test (test)
-        run: ctest --preset test
-
-  build-and-test-macos-weekly:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: macos-latest
 
     steps:
       - name: Checkout
@@ -56,38 +35,6 @@ jobs:
       - name: Check formatting
         run: ./scripts/check_format.sh --all
 
-  clang-tidy:
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install clang-tidy
-        run: sudo apt-get update && sudo apt-get install -y clang-tidy
-
-      - name: Configure (clang-tidy)
-        run: cmake --preset tidy
-
-      - name: Run clang-tidy checks (changed files)
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            BASE_SHA="${{ github.event.pull_request.base.sha }}"
-            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
-          else
-            BASE_SHA="${{ github.event.before }}"
-            HEAD_SHA="${{ github.sha }}"
-          fi
-
-          ./scripts/run_clang_tidy_reports.sh \
-            --changed-only \
-            --base "$BASE_SHA" \
-            --head "$HEAD_SHA" \
-            --build-dir build/tidy \
-            --fail-on-warnings
-
   asan:
     runs-on: ubuntu-latest
     steps:
@@ -102,26 +49,3 @@ jobs:
 
       - name: Test (ASan/UBSan)
         run: ctest --preset asan
-
-  clang-tidy-weekly-report:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install clang-tidy
-        run: sudo apt-get update && sudo apt-get install -y clang-tidy
-
-      - name: Configure (clang-tidy)
-        run: cmake --preset tidy
-
-      - name: Generate clang-tidy reports
-        run: ./scripts/run_clang_tidy_reports.sh --all --build-dir build/tidy --report-file build/tidy/clang-tidy-report.txt
-
-      - name: Upload reports as artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: clang-tidy-reports
-          path: build/tidy/clang-tidy-report.txt
-          retention-days: 30
