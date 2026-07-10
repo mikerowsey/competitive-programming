@@ -17,7 +17,7 @@ fi
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 problem_dir="$repo_root/src/cses/$slug"
-tests_dir="$repo_root/src/cses/tests/$slug"
+tests_dir="$repo_root/tests/$slug"
 gtest_cases_dir="$tests_dir/gtest_cases"
 cmake_registry_file="$repo_root/src/cses/CMakeLists.txt"
 source_file="$problem_dir/$slug.cpp"
@@ -71,9 +71,9 @@ TEST(${slug}_test, case_00)
     cses::gtest_case_utils::expect_case_matches(
         solve,
         cses::gtest_case_utils::repo_path(
-            "src/cses/tests/${slug}/gtest_cases/case_00_input.txt"),
+            "tests/${slug}/gtest_cases/case_00_input.txt"),
         cses::gtest_case_utils::repo_path(
-            "src/cses/tests/${slug}/gtest_cases/case_00_output.txt"));
+            "tests/${slug}/gtest_cases/case_00_output.txt"));
 }
 EOF2
 
@@ -162,5 +162,5 @@ echo "Created: $tests_dir"
 echo "Updated explicit registry: $cmake_registry_file"
 echo "Next:"
 echo "  1) Fill in ${slug}.cpp algorithm and notes"
-echo "  2) Add fixture content in src/cses/tests/${slug}/gtest_cases"
+echo "  2) Add fixture content in tests/${slug}/gtest_cases"
 echo "  3) Run: cmake --preset debug-googletest && ctest --preset debug-googletest -R '^gtest\\.cses\\.${slug}\\.' --output-on-failure"

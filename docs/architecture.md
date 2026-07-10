@@ -49,7 +49,7 @@ Each problem directory is an independent executable target.
 
 - gtest test targets are generated as `<problem_slug>_gtest` when a wrapper exists.
 - CTest test name format is generated through `gtest_discover_tests` with prefix `gtest.cses.<problem_slug>.`.
-- Shared assertions and semantic validators live in `src/cses/tests/gtest_case_utils.hpp`.
+- Shared assertions and semantic validators live in `tests/gtest_case_utils.hpp`.
 
 ## Problem Ownership Rules
 
@@ -59,8 +59,8 @@ Each problem folder owns:
 
 Each problem test folder owns:
 
-- gtest wrapper (`src/cses/tests/<problem_slug>/<problem_slug>_gtest.cpp`)
-- local fixtures (`src/cses/tests/<problem_slug>/gtest_cases/*`)
+- gtest wrapper (`tests/<problem_slug>/<problem_slug>_gtest.cpp`)
+- local fixtures (`tests/<problem_slug>/gtest_cases/*`)
 
 This keeps problem context local and reduces cross-file coupling.
 

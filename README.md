@@ -17,7 +17,7 @@ The objective is to produce solutions and infrastructure that hold up under a pr
 ## What This Repo Is
 
 - A multi-target C++ project where each problem is its own executable.
-- A gtest-driven workflow using per-problem fixture files under `src/cses/tests/<problem>/gtest_cases`.
+- A gtest-driven workflow using per-problem fixture files under `tests/<problem>/gtest_cases`.
 
 ## Milestone Status
 
